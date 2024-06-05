@@ -1,4 +1,6 @@
 
+import { NavLink } from 'react-router-dom';
+
 import {
   Box,
   Heading,
@@ -38,16 +40,19 @@ export default function HomePage() {
             align={'center'}
             alignSelf={'center'}
             position={'relative'}>
-            <Button
-              colorScheme={'green'}
-              bg={'purple.400'}
-              rounded={'full'}
-              px={6}
-              _hover={{
-                bg: 'purple.500',
-              }}>
-              Get Started
-            </Button>
+            <NavLink to='/main'>
+                <Button
+                onClick={'/main'}
+                colorScheme={'green'}
+                bg={'purple.400'}
+                rounded={'full'}
+                px={6}
+                _hover={{
+                    bg: 'purple.500',
+                }}>
+                Get Started
+                </Button>
+            </NavLink>
             {/* <Button variant={'link'} colorScheme={'blue'} size={'sm'}>
               Learn more
             </Button> */}
