@@ -26,7 +26,7 @@ export default function HomePage() {
             fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
             lineHeight={'110%'}>
             Track your <br />
-            <Text as={'span'} color={'pink.400'}>
+            <Text as={'span'} color={'black.400'}>
               favourite albums
             </Text>
           </Heading>
