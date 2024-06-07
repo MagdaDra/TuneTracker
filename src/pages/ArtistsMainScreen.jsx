@@ -23,41 +23,21 @@ function ArtistsMainScreen() {
         .then(data => {
             setToken(data.access_token);
         });
-       
     };
     
     const authorization = {
-        headers: {'Authorization': `Bearer ${token}`};
+        headers: {'Authorization': `Bearer ${token}`}
     }
 
-   // const searchUrl = 'https://api.spotify.com/v1/search';
 
-    // const artistsIds='https://api.spotify.com/v1/artists?ids=0L8ExT028jH3ddEcZwqJJ5%2C06HL4z0CvFAxyc27GXpf02'
-
+    const artistsIds='https://api.spotify.com/v1/artists?ids=0L8ExT028jH3ddEcZwqJJ5%2C06HL4z0CvFAxyc27GXpf02'
 
 
-    // const getArtists = async () => {
-    //     try {
-    //         const response = await axios.get(artistsIds, authorization)
-    //         setArtistsData(response.data);
-    //     } catch (error) {
-    //         console.log('error fetching artists from spotify:', error)
-    //     }
-    // }
 
-    const getArtists = async (token) => {
-        const searchUrl = 'https://api.spotify.com/v1/search';
-
+    const getArtists = async () => {
         try {
-            const response = await axios.get(searchUrl, {
-                authorization, 
-                params: {
-                    q: 'rock',
-                    type: 'artist',
-                    limit: 50
-                }
-            });
-            setArtistsData(response.data)
+            const response = await axios.get(artistsIds, authorization)
+            setArtistsData(response.data);
         } catch (error) {
             console.log('error fetching artists from spotify:', error)
         }
@@ -73,19 +53,40 @@ function ArtistsMainScreen() {
 
     }, [])
 
-    return (
-        <div className="artists-list">
-            {/* {artistsData.artists.map(artist => {
-                return (
-                    <div key={artist.id}>
-                        <img src={artist.images[2].url} />
-                        <h3>{artist.name}</h3>
-                    </div>
-                )
-            })} */}
+     return (
+         <div className="artists-list">
+         
+             {artistsData.artists.map(artist => {
+                 return (
+                     <div key={artist.id}>
+                          <img src={artist.images[2].url} />
+                          <h3>{artist.name}</h3>
+                     </div>
+                 )
+            })}
 
-        </div>
-    )
+         </div>
+    );
+
+
+    // const getArtists = async (token) => {
+    //     const searchUrl = 'https://api.spotify.com/v1/search';
+
+    //     try {
+    //         const response = await axios.get(searchUrl, {
+    //             authorization, 
+    //             params: {
+    //                 q: 'rock',
+    //                 type: 'artist',
+    //                 limit: 50
+    //             }
+    //         });
+    //         setArtistsData(response.data)
+    //     } catch (error) {
+    //         console.log('error fetching artists from spotify:', error)
+    //     }
+    // }
+
 }
 
 export default ArtistsMainScreen;
