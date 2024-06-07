@@ -4,7 +4,7 @@ import axios from "axios";
 
 function ArtistsMainScreen() {
 
-    const [artist, setArtist] = useState("")
+    const [artistsData, setArtistsData] = useState("")
     const [token, setToken] = useState("")
     const clientId = 'd41b6b28c6264b1fba6b949297186448';
     const clientSecret='4dfaa5781d554e9d94063dde6ef08bdb';
@@ -23,47 +23,66 @@ function ArtistsMainScreen() {
         .then(data => {
             setToken(data.access_token);
         });
-
+       
     };
-
-    const artistsIds='https://api.spotify.com/v1/artists?ids=2CIMQHirSU0MQqyYHq0eOx%2C57dN52uHvrHOxijzpIgu3E%2C1vCWHaC5f2uS3yhpwWbIA6'
-
-    // const getArtist = async () => {
-    //     fetch(`https://api.spotify.com/v1/artists/${artistAPI}`, {
-    // method: 'GET',
-    // headers: {'Authorization': 'Bearer BQDh4yGDLmTAi1vtHSeTfPQCKSBzOuHecT5Y3TuhQg8lIcyYrOHy4M3V28V08MGNtibO9b-JYsagjTMGJRtcAD8azg6_sEmmE5biyxpJ9c3zEjDM7QA'}
-    // })
-    // .then(response => response.json())
-    // .then(artistData => {
-    //     setArtist(artistData);
-    // });
-    // }
-
+    
     const authorization = {
-        headers: {'Authorization': `Bearer ${token}`}
+        headers: {'Authorization': `Bearer ${token}`};
     }
 
-    const getArtist = async () => {
+   // const searchUrl = 'https://api.spotify.com/v1/search';
+
+    // const artistsIds='https://api.spotify.com/v1/artists?ids=0L8ExT028jH3ddEcZwqJJ5%2C06HL4z0CvFAxyc27GXpf02'
+
+
+
+    // const getArtists = async () => {
+    //     try {
+    //         const response = await axios.get(artistsIds, authorization)
+    //         setArtistsData(response.data);
+    //     } catch (error) {
+    //         console.log('error fetching artists from spotify:', error)
+    //     }
+    // }
+
+    const getArtists = async (token) => {
+        const searchUrl = 'https://api.spotify.com/v1/search';
+
         try {
-            const response = await axios.get('https://api.spotify.com/v1/artists?ids=0L8ExT028jH3ddEcZwqJJ5%3Fsi%3DNHI4JsHFTCGqY8Wjt-hFBg%2C06HL4z0CvFAxyc27GXpf02%3Fsi%3DS7Qx_7aNQYWGLHGfayIYow', authorization)
-            setArtist(response.data);
+            const response = await axios.get(searchUrl, {
+                authorization, 
+                params: {
+                    q: 'rock',
+                    type: 'artist',
+                    limit: 50
+                }
+            });
+            setArtistsData(response.data)
         } catch (error) {
-            console.log('error fetching artist from spotify:', error)
+            console.log('error fetching artists from spotify:', error)
         }
     }
 
-    console.log(artist)
+    console.log(artistsData)
 
     useEffect(() => {
         getToken();
         console.log('useEffect: mounting token');
-        getArtist();
-        console.log('useEffect: mounting artist');
+        getArtists();
+        console.log('useEffect: mounting artists');
 
     }, [])
 
     return (
-        <div>
+        <div className="artists-list">
+            {/* {artistsData.artists.map(artist => {
+                return (
+                    <div key={artist.id}>
+                        <img src={artist.images[2].url} />
+                        <h3>{artist.name}</h3>
+                    </div>
+                )
+            })} */}
 
         </div>
     )
