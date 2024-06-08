@@ -15,8 +15,6 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon} from '@chakra-ui/icons';
 
-const Links = ['Dashboard', 'Projects', 'Team'];
-
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -41,7 +39,7 @@ export default function Navbar() {
               spacing={4}
               display={{ base: 'none', md: 'flex' }}>
               <NavLink>My Albums</NavLink>
-              <NavLink>Wishlist</NavLink>
+              <NavLink to="/main/wishlist">Wishlist</NavLink>
             </HStack>
           </HStack>
           <Flex alignItems={'center'}>
@@ -77,9 +75,8 @@ export default function Navbar() {
         {isOpen ? (
           <Box pb={4} display={{ md: 'none' }}>
             <Stack as={'nav'} spacing={4}>
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
+            <NavLink>My Albums</NavLink>
+            <NavLink to="/main/wishlist">Wishlist</NavLink>
             </Stack>
           </Box>
         ) : null}

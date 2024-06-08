@@ -4,3 +4,22 @@
     justify-content: space-evenly;
     margin-top: 2rem;
 }
+
+.wishlist {
+    text-align: center;
+    font-weight: bolder;
+    margin-top: 2rem;
+
+}
+
+.wishImg {
+    width: 100px;
+}
+
+.wish-list {
+    margin-top: 2rem;
+}
+
+.list-item {
+    margin-top: 2rem;
+}

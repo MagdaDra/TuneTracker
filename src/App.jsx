@@ -4,7 +4,8 @@ import {Routes, Route} from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ArtistsMainScreen from './pages/ArtistsMainScreen';
 import { Layout } from './components/Layout';
-import GetToken from './components/GetToken';
+import WishList from './pages/WishList';
+//import { SpotifyAuthProviderWrapper } from './context/Authentication.context';
 
 function App() {
   
@@ -13,12 +14,8 @@ function App() {
     <ChakraProvider>
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='/main' element={
-          <Layout> 
-              <GetToken token={{token}}>
-                <ArtistsMainScreen /> 
-              </GetToken>
-          </Layout>} />
+        <Route path='/main' element={<Layout> <ArtistsMainScreen /> </Layout>} />
+        <Route path='/main/wishlist' element={<WishList/>}></Route>
       </Routes> 
     </ChakraProvider>
   )
