@@ -42,7 +42,6 @@ export default function HomePage() {
             position={'relative'}>
             <NavLink to='/main'>
                 <Button
-                onClick={'/main'}
                 colorScheme={'green'}
                 bg={'purple.400'}
                 rounded={'full'}
