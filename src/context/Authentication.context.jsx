@@ -6,7 +6,7 @@ const SpotifyAuthContext = createContext();
 // Create a wrapper
 const SpotifyAuthProviderWrapper = props => {
   const [token, setToken] = useState(undefined);
-  const clientId = 'd41b6b28c6264b1fba6b949297186448'; // Replace with your client ID
+  const clientId = 'd41b6b28c6264b1fba6b949297186448';
   const navigate = useNavigate();
 
   const authenticateUser = async () => {
@@ -32,7 +32,7 @@ const SpotifyAuthProviderWrapper = props => {
 
           await getAccessToken(clientId, code);
         }
-        navigate('/');
+        navigate('/main');
       }
       localStorage.removeItem('authenticating');
     }

@@ -1,5 +1,7 @@
 
 import { NavLink } from 'react-router-dom';
+//import { useContext } from 'react';
+//import { SpotifyAuthContext } from '../context/Authentication.context';
 
 import {
   Box,
@@ -11,6 +13,7 @@ import {
 } from '@chakra-ui/react';
 
 export default function HomePage() {
+  
   return (
     <>
 
@@ -40,8 +43,9 @@ export default function HomePage() {
             align={'center'}
             alignSelf={'center'}
             position={'relative'}>
-            <NavLink to='/main'>
+              <NavLink to="/main">
                 <Button
+                //onClick = {useContext(SpotifyAuthContext)}
                 colorScheme={'green'}
                 bg={'purple.400'}
                 rounded={'full'}
@@ -51,10 +55,7 @@ export default function HomePage() {
                 }}>
                 Get Started
                 </Button>
-            </NavLink>
-            {/* <Button variant={'link'} colorScheme={'blue'} size={'sm'}>
-              Learn more
-            </Button> */}
+              </NavLink>  
           </Stack>
         </Stack>
       </Container>

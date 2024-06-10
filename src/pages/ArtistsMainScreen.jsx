@@ -5,7 +5,7 @@ import axios from "axios";
 function ArtistsMainScreen() {
 
     const [albumsData, setAlbumsData] = useState("")
-    //const [search, setSearch] = useState("")
+    const [search, setSearch] = useState("")
 
     const getAllAlbums = async () => {
         try {
@@ -19,8 +19,13 @@ function ArtistsMainScreen() {
     console.log(albumsData)
 
     useEffect(() => {
-        getAllAlbums();
+        const authParameters = {
+            // 14:30 min filmiku
+        }
     }, [])
+
+    // change the search to be searched after we press enter or 'search' button
+    // accessToken = useContext(token)
 
     // const handleSearch = async(event) => {
     //     const query = event.target.value;
@@ -60,64 +65,7 @@ function ArtistsMainScreen() {
 
     // --------------------------------------- SEARCH FORM -------------------------------------------------------------------------
 
-    
-//   const getRefreshToken = async () => {
 
-//    // refresh token that has been previously stored
-//    const refreshToken = localStorage.getItem('refresh_token');
-//    const url = "https://accounts.spotify.com/api/token";
-
-//     const payload = {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/x-www-form-urlencoded'
-//       },
-//       body: new URLSearchParams({
-//         grant_type: 'refresh_token',
-//         refresh_token: refreshToken,
-//         client_id: clientId
-//       }),
-//     }
-//     const body = await fetch(url, payload);
-//     const response await body.json();
-
-//     localStorage.setItem('access_token', response.accessToken);
-//     localStorage.setItem('refresh_token', response.refreshToken);
-//   }
-
-    // -------------------------------------------------------------------------------------------------------------------------
-
-
-    // const searchUrl = 'https://api.spotify.com/v1/search';
-
-
-    // const getArtists = async () => {
-        
-
-    //     try {
-    //         const response = await axios.get(searchUrl, 
-    //             authorization, {
-    //             params: {
-    //                 q: 'rock',
-    //                 type: 'artist',
-    //                 limit: 50
-    //             }
-    //         });
-    //         setArtistsData(response.data)
-    //     } catch (error) {
-    //         console.log('error fetching artists from spotify:', error)
-    //     }
-    // }
-
-    // console.log(artistsData)
-
-    // useEffect(() => {
-    // getToken();
-    // console.log('useEffect: mounting token');
-    // getArtists();
-    // console.log('useEffect: mounting artists');
-
-    // }, [])
 
 }
 
