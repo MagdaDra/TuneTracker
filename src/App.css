@@ -23,3 +23,17 @@
 .list-item {
     margin-top: 2rem;
 }
+
+.search-result {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.search-bar {
+    margin-top: 2rem;
+}
+
+.search-tiles {
+    margin: 2rem;
+}

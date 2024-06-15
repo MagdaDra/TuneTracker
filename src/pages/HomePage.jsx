@@ -1,7 +1,7 @@
 
 import { NavLink } from 'react-router-dom';
-//import { useContext } from 'react';
-//import { SpotifyAuthContext } from '../context/Authentication.context';
+import { useContext } from 'react';
+import { SpotifyAuthContext } from '../context/Authentication.context';
 
 import {
   Box,
@@ -45,7 +45,7 @@ export default function HomePage() {
             position={'relative'}>
               <NavLink to="/main">
                 <Button
-                //onClick = {useContext(SpotifyAuthContext)}
+                onClick = {useContext(SpotifyAuthContext)}
                 colorScheme={'green'}
                 bg={'purple.400'}
                 rounded={'full'}
