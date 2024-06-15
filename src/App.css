@@ -27,6 +27,7 @@
 .search-result {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
     margin-top: 2rem;
 }
 
@@ -37,3 +38,8 @@
 .search-tiles {
     margin: 2rem;
 }
+
+body {
+    margin-bottom: 64px;
+}
+

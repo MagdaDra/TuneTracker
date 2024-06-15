@@ -3,7 +3,6 @@ import { SpotifyAuthContext } from '../context/Authentication.context';
 import {
     Box,
     Center,
-    useColorModeValue,
     Heading,
     Text,
     Stack,
@@ -50,9 +49,10 @@ function ArtistsMainScreen() {
         .then(data => {
             setAlbumsData(data.items)
         })
+        console.log(albums)
     }
 
-    console.log(albumsData)
+
 
 
     return (
@@ -76,19 +76,66 @@ function ArtistsMainScreen() {
                  {albumsData.map(album => {
                     return ( 
 
-                        
-
-
-                        <div key={album.id} className="search-tile">
-                            <Image 
-                                src={album.images[1].url}
+                
+                        <Center py={12} key={album.id} className="center-box">
+                        <Box
+                            role={'group'}
+                            p={6}
+                            maxW={'290px'}
+                            w={'full'}
+                            boxShadow={'2xl'}
+                            rounded={'lg'}
+                            pos={'relative'}
+                            zIndex={0}>
+                            <Box
+                            rounded={'lg'}
+                            mt={-12}
+                            pos={'relative'}
+                            height={'230px'}
+                            _after={{
+                                transition: 'all .3s ease',
+                                content: '""',
+                                w: 'full',
+                                h: 'full',
+                                pos: 'absolute',
+                                top: 5,
+                                left: 0,
+                                backgroundImage: `url(${album.images[1].url})`,
+                                filter: 'blur(15px)',
+                                zIndex: -1,
+                            }}
+                            _groupHover={{
+                                _after: {
+                                filter: 'blur(20px)',
+                                },
+                            }}>
+                            <Image
                                 rounded={'lg'}
                                 height={230}
                                 width={230}
-                                objectFit={'cover'} 
+                                objectFit={'cover'}
+                                src={album.images[1].url}
                             />
-                            <h3>{album.name}</h3>
-                         </div>
+                            </Box>
+                            <Stack pt={10} align={'center'} height={'130px'}>
+                            <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+                                {album.artists[0].name}
+                            </Text>
+                            <Heading fontSize={'1xl'} fontFamily={'body'} fontWeight={500}>
+                                {album.name}
+                            </Heading>
+                            {/* <Stack direction={'row'} align={'center'}>
+                                <Text fontWeight={800} fontSize={'xl'}>
+                                $57
+                                </Text>
+                                <Text textDecoration={'line-through'} color={'gray.600'}>
+                                $199
+                                </Text>
+                            </Stack> */}
+                            </Stack>
+                        </Box>
+                        </Center>
+
                     )
                 })}
             </div>
@@ -98,3 +145,14 @@ function ArtistsMainScreen() {
 }
 
 export default ArtistsMainScreen;
+
+                        // {/* <div key={album.id} className="search-tile">
+                        //     <Image 
+                        //         src={album.images[1].url}
+                        //         rounded={'lg'}
+                        //         height={230}
+                        //         width={230}
+                        //         objectFit={'cover'} 
+                        //     />
+                        //     <h3>{album.name}</h3>
+                        //  </div> */}
