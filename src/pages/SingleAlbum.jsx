@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useState, useContext, useEffect} from 'react';
 import { SpotifyAuthContext } from "../context/Authentication.context";
 import axios from "axios";
-import { Button, Flex } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
 import { useNavigate } from "react-router-dom";
 
 
@@ -13,6 +13,7 @@ function SingleAlbum() {
     const value = useContext(SpotifyAuthContext)
     const accessToken = value.token;
     const [albumInfo, setAlbumInfo] = useState(null)
+    const navigate = useNavigate()
 
     // get request with Album ID to receive album details
 
@@ -38,6 +39,21 @@ function SingleAlbum() {
         }
 
         };
+
+    const addToWishlist = async () => {
+    
+    
+      try {
+      const newRecord = {
+          name: albumInfo.name, artist: albumInfo.artists[0].name, image: albumInfo.images[1].url} 
+          await axios.post('http://localhost:5005/wishlist', newRecord)
+         navigate('/main/wishlist')
+     } catch (error) {
+         console.log('Error adding the album to wishlist', error)
+     }
+              
+
+    }
 
         useEffect(() => {
             getAlbum();
@@ -71,6 +87,7 @@ function SingleAlbum() {
                 
 
                     <Button 
+                    type="submit"
                     colorScheme={'purple'}
                     bg={'purple.400'}
                     rounded={'full'}
@@ -78,24 +95,8 @@ function SingleAlbum() {
                     _hover={{
                         bg: 'purple.500',
                     }}
-                    
-                    // onClick = {
-                    
-                    //     const handleSubmit = async (event) => {
-                    //     event.preventDefault()
-    
-                    //     try {
-                    //     const newRecord = {
-                    //         {albumInfo.name}, {albumInfo.artists[0].name}, {albumInfo.images[1].url}
-                    //         } 
-                    //         await axios.post('http://localhost:5005/albums', newRecord)
-                    //         navigate('/main/wishlist')
-                    //     } catch (error) {
-                    //         console.log('Error creating the album', error)
-                    //     }
-                    // }
 
-                    // }
+                    onClick={addToWishlist}
                     
                     >+ WishList</Button>
                 

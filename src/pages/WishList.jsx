@@ -10,7 +10,7 @@ export default function WishList () {
 
     const getAlbums = async () => {
         try {
-            const response = await axios.get('http://localhost:5005/albums');
+            const response = await axios.get('http://localhost:5005/wishlist');
             setAlbums(response.data);
         console.log(albums);
         } catch (error) {

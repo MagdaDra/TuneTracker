@@ -39,7 +39,7 @@ export default function Navbar() {
               spacing={4}
               display={{ base: 'none', md: 'flex' }}>
               <NavLink>My Albums</NavLink>
-              <NavLink to="/main/wishlist">Wishlist</NavLink>
+              <NavLink to="/main/wishlist">WishList</NavLink>
             </HStack>
           </HStack>
           <Flex alignItems={'center'}>
