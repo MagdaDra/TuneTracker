@@ -7,7 +7,7 @@ import { Layout } from './components/Layout';
 import WishList from './pages/WishList';
 import AddAlbum from './pages/AddAlbum';
 import EditAlbum from './pages/EditAlbum';
-
+import SingleAlbum from './pages/SingleAlbum';
 
 function App() {
   
@@ -20,6 +20,7 @@ function App() {
         <Route path='/main/wishlist' element={<Layout> <WishList/> </Layout>} />
         <Route path='/main/wishlist/new' element={<Layout> <AddAlbum /> </Layout>} />
         <Route path='main/wishlist/edit/:albumId' element={<Layout> <EditAlbum /> </Layout>} />
+        <Route path='/main/album/:albumId' element={<Layout> <SingleAlbum /> </Layout>} />
       </Routes> 
     </ChakraProvider>
   )

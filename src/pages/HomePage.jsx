@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useContext } from 'react';
 import { SpotifyAuthContext } from '../context/Authentication.context';
 
+
 import {
   Box,
   Heading,
@@ -29,7 +30,7 @@ export default function HomePage() {
             fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
             lineHeight={'110%'}>
             Track your <br />
-            <Text as={'span'} color={'rgb(3, 32, 252)'}>
+            <Text as={'span'} color={'rgb(255,105,180)'}>
               favourite albums
             </Text>
           </Heading>
@@ -46,12 +47,12 @@ export default function HomePage() {
               <NavLink to="/main">
                 <Button
                 onClick = {useContext(SpotifyAuthContext)}
-                colorScheme={'green'}
-                bg={'purple.400'}
+                colorScheme={'pink'}
+                bg={'pink.400'}
                 rounded={'full'}
                 px={6}
                 _hover={{
-                    bg: 'purple.500',
+                    bg: 'pink.500',
                 }}>
                 Get Started
                 </Button>

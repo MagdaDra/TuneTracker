@@ -1,5 +1,6 @@
 import { useState, useContext} from 'react';
 import { SpotifyAuthContext } from '../context/Authentication.context';
+import { NavLink } from 'react-router-dom';
 import {
     Box,
     Center,
@@ -76,8 +77,8 @@ function ArtistsMainScreen() {
                  {albumsData.map(album => {
                     return ( 
 
-                
-                        <Center py={12} key={album.id} className="center-box">
+                        <NavLink key={album.id} to={`/main/album/${album.id}`}>
+                        <Center py={12} className="center-box">
                         <Box
                             role={'group'}
                             p={6}
@@ -135,7 +136,7 @@ function ArtistsMainScreen() {
                             </Stack>
                         </Box>
                         </Center>
-
+                        </NavLink>
                     )
                 })}
             </div>
@@ -145,14 +146,3 @@ function ArtistsMainScreen() {
 }
 
 export default ArtistsMainScreen;
-
-                        // {/* <div key={album.id} className="search-tile">
-                        //     <Image 
-                        //         src={album.images[1].url}
-                        //         rounded={'lg'}
-                        //         height={230}
-                        //         width={230}
-                        //         objectFit={'cover'} 
-                        //     />
-                        //     <h3>{album.name}</h3>
-                        //  </div> */}
