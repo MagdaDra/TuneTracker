@@ -3,41 +3,41 @@ import axios from "axios";
 import { Button } from '@chakra-ui/react';
 import { Link } from "react-router-dom";
 
-export default function WishList () {
+export default function MyAlbums () {
 
     const [albums, setAlbums] = useState([]);
     
 
     const getAlbums = async () => {
         try {
-            const response = await axios.get('http://localhost:5005/wishlist');
+            const response = await axios.get('http://localhost:5005/albums');
             setAlbums(response.data);
         console.log(albums);
         } catch (error) {
-            console.log('error fetching wishlist', error)
+            console.log('error fetching my albums', error)
         }
     }
 
 
     useEffect(() => {
-        console.log('useEffect: Mounting wishlist')
+        console.log('useEffect: Mounting my albums')
         getAlbums();
     }, []);
 
     const deleteProject = async (id) => {
         try {
-           await axios.delete(`http://localhost:5005/wishlist/${id}?_embed=tasks`);
+           await axios.delete(`http://localhost:5005/albums/${id}?_embed=tasks`);
            getAlbums();
         } catch (error) {
-            console.log('Error deleting the project', error)
+            console.log('Error deleting my album', error)
         }
     }
     
     return (
         <div>
-            <h2 className="wishlist">My WishList 💫</h2>
+            <h2 className="myAlbums">My Albums 🎵</h2>
             
-            <Link to='/main/wishlist/new'>
+            <Link to='/main/myalbums/new'>
                 <Button 
                 colorScheme={'green'}
                 bg={'purple.400'}
@@ -45,7 +45,7 @@ export default function WishList () {
                 px={6}
                 _hover={{
                     bg: 'purple.500',
-                }}>Add new album</Button>
+                }}>Add album</Button>
             </Link>
             
             
@@ -56,7 +56,7 @@ export default function WishList () {
                         <img src={album.img} className="wishImg"/>
                         <h2>{album.title}</h2>
                         <p>by {album.artist}</p>
-                        <Link to={`/main/wishlist/edit/${album.id}`}>
+                        <Link to={`/main/myalbums/edit/${album.id}`}>
                             <button>Edit</button>
                         </Link> <br />
                         <button onClick={() => deleteProject(album.id)}>Delete</button>

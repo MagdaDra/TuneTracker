@@ -38,7 +38,7 @@ export default function Navbar() {
               as={'nav'}
               spacing={4}
               display={{ base: 'none', md: 'flex' }}>
-              <NavLink>My Albums</NavLink>
+              <NavLink to="/main/myalbums">My Albums</NavLink>
               <NavLink to="/main/wishlist">WishList</NavLink>
             </HStack>
           </HStack>
@@ -75,7 +75,7 @@ export default function Navbar() {
         {isOpen ? (
           <Box pb={4} display={{ md: 'none' }}>
             <Stack as={'nav'} spacing={4}>
-            <NavLink>My Albums</NavLink>
+            <NavLink to="/main/myalbums">My Albums</NavLink>
             <NavLink to="/main/wishlist">Wishlist</NavLink>
             </Stack>
           </Box>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function AddAlbum() {
+function AddMyAlbum() {
     const [title, setTitle] = useState("");
     const [artist, setArtist] = useState("");
     const [img, setImg] = useState("");
@@ -28,7 +28,7 @@ function AddAlbum() {
                title, artist, img
                } 
                await axios.post('http://localhost:5005/albums', newRecord)
-               navigate('/main/wishlist')
+               navigate('/main/myalbums')
         } catch (error) {
             console.log('Error creating the album', error)
         }
@@ -50,4 +50,4 @@ function AddAlbum() {
 
 }
 
-export default AddAlbum;
+export default AddMyAlbum;

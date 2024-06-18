@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 
 
-const EditAlbum = () => {
+const EditWishAlbum = () => {
     const [title, setTitle] = useState("");
     const [artist, setArtist] = useState("");
     const [img, setImg] = useState("");
@@ -30,7 +30,7 @@ const EditAlbum = () => {
           const album = {
             title, artist, img
           } 
-          await axios.put(`http://localhost:5005/albums/${albumId}?_embed=tasks`, album);
+          await axios.put(`http://localhost:5005/wishlist/${albumId}?_embed=tasks`, album);
           navigate(`/main/wishlist`)
 
         } catch (error) {
@@ -40,7 +40,7 @@ const EditAlbum = () => {
 
     const getSingleAlbum = async (id) => {
         try {
-            const response = await axios.get(`http://localhost:5005/albums/${id}?_embed=tasks`);
+            const response = await axios.get(`http://localhost:5005/wishlist/${id}?_embed=tasks`);
             setImg(response.data.img);
             setTitle(response.data.title);
             setArtist(response.data.artist);
@@ -71,4 +71,4 @@ const EditAlbum = () => {
 
 }
 
-export default EditAlbum;
+export default EditWishAlbum;

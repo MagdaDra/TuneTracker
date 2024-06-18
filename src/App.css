@@ -24,22 +24,36 @@
     margin-top: 2rem;
 }
 
-.search-result {
+/* .search-result {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     margin-top: 2rem;
 }
 
+.search-input {
+    min-width: 70vw;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border-radius: 0.5;
+
+} */
+
 .search-bar {
     margin-top: 2rem;
+    width: 80vw;
+    display: flex;
+    justify-content: space-between;
+
 }
 
 .search-tiles {
     margin: 2rem;
 }
 
-body {
-    margin-bottom: 64px;
+
+#root {
+    background-image: linear-gradient(to bottom right, #ED7845, #F95CA4)
 }
 

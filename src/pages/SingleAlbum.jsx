@@ -41,19 +41,28 @@ function SingleAlbum() {
         };
 
     const addToWishlist = async () => {
-    
-    
       try {
       const newRecord = {
-          name: albumInfo.name, artist: albumInfo.artists[0].name, image: albumInfo.images[1].url} 
+          title: albumInfo.name, artist: albumInfo.artists[0].name, img: albumInfo.images[1].url} 
           await axios.post('http://localhost:5005/wishlist', newRecord)
          navigate('/main/wishlist')
      } catch (error) {
          console.log('Error adding the album to wishlist', error)
      }
-              
-
     }
+    const addToMyAlbums = async () => {
+      try {
+      const newRecord = {
+          title: albumInfo.name, artist: albumInfo.artists[0].name, img: albumInfo.images[1].url} 
+          await axios.post('http://localhost:5005/albums', newRecord)
+         navigate('/main/myalbums')
+     } catch (error) {
+         console.log('Error adding the album to my albums', error)
+     }
+    }
+
+
+
 
         useEffect(() => {
             getAlbum();
@@ -83,7 +92,9 @@ function SingleAlbum() {
                     px={6}
                     _hover={{
                         bg: 'purple.500',
-                    }}>+ My Albums</Button>
+                    }}
+                    onClick={addToMyAlbums}
+                    >+ My Albums</Button>
                 
 
                     <Button 
@@ -95,9 +106,7 @@ function SingleAlbum() {
                     _hover={{
                         bg: 'purple.500',
                     }}
-
                     onClick={addToWishlist}
-                    
                     >+ WishList</Button>
                 
 </>

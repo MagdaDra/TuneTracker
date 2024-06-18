@@ -16,11 +16,9 @@ import {
 export default function HomePage() {
   
   return (
-    <>
-
-
-      <Container maxW={'3xl'}>
+      <Container  maxW={'3xl'} className="homePage">
         <Stack
+        height={'100vh'}
           as={Box}
           textAlign={'center'}
           spacing={{ base: 8, md: 14 }}
@@ -28,9 +26,10 @@ export default function HomePage() {
           <Heading
             fontWeight={600}
             fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
-            lineHeight={'110%'}>
+            lineHeight={'110%'}
+            color={'white'}>
             Track your <br />
-            <Text as={'span'} color={'rgb(255,105,180)'}>
+            <Text as={'span'} color={'rgb(247,255,0)'}>
               favourite albums
             </Text>
           </Heading>
@@ -48,18 +47,19 @@ export default function HomePage() {
                 <Button
                 onClick = {useContext(SpotifyAuthContext)}
                 colorScheme={'pink'}
-                bg={'pink.400'}
+                bg={'rgb(247,255,0)'}
                 rounded={'full'}
                 px={6}
                 _hover={{
-                    bg: 'pink.500',
-                }}>
+                    bg: 'rgb(222,230,0)',
+                }}
+                color={'grey'}>
                 Get Started
                 </Button>
               </NavLink>  
           </Stack>
         </Stack>
       </Container>
-    </>
+    
   );
 }

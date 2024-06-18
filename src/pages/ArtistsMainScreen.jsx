@@ -8,6 +8,7 @@ import {
     Text,
     Stack,
     Image,
+    Input,
   } from '@chakra-ui/react'
 
 
@@ -60,7 +61,11 @@ function ArtistsMainScreen() {
         <>
             <div className="search-bar">
                 <form onSubmit={e => e.preventDefault()}>
-                    <input 
+                <Stack spacing={3}>
+                    <Input 
+                        size='lg'
+                        variant='outline'
+                        className="search-input"
                         type="text" 
                         placeholder="Search artist" 
                         onKeyUp={event => {
@@ -69,6 +74,7 @@ function ArtistsMainScreen() {
                         }}
                         onChange = {event => setSearch(event.target.value)}
                     />
+                </Stack>
                 </form>
                 <button onClick={handleSearch}> Search </button>
             </div>
