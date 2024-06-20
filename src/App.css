@@ -18,18 +18,33 @@
 
 .wish-list {
     margin-top: 2rem;
+    background-color: white
 }
 
 .list-item {
     margin-top: 2rem;
 }
 
-/* .search-result {
+.search-result {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     margin-top: 2rem;
+    background-color: white;
 }
+
+.single-album-box {
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+}
+
+.box{
+    width: 500px;
+}
+
+
+/* 
 
 .search-input {
     min-width: 70vw;
@@ -54,6 +69,6 @@
 
 
 #root {
-    background-image: linear-gradient(to bottom right, #ED7845, #F95CA4)
+    background-image: linear-gradient(to bottom right, rgb(248 155 41), rgb(231 38 123))
 }
 

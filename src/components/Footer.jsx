@@ -43,6 +43,8 @@ export default function Footer() {
       color={useColorModeValue('gray.700', 'gray.200')}
       width={'100%'}
       height={'64px'}
+      position={'fixed'}
+      bottom={0}
       >
       <Container
         as={Stack}
@@ -51,7 +53,9 @@ export default function Footer() {
         direction={{ base: 'column', md: 'row' }}
         spacing={4}
         justify={{ base:'center', md: 'space-evenly' }}
-        align={{ base: 'center', md: 'center' }}>
+        align={{ base: 'center', md: 'center' }}
+        position={'fixed'}
+        bottom={0}>
         <Text>© 2024 TuneTracker by Magda. All rights reserved</Text>
         <Stack direction={'row'} spacing={6}>
           <SocialButton label={'Twitter'} href={'#'}>

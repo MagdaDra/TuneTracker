@@ -2,8 +2,16 @@ import { useParams } from "react-router-dom";
 import { useState, useContext, useEffect} from 'react';
 import { SpotifyAuthContext } from "../context/Authentication.context";
 import axios from "axios";
-import { Button } from '@chakra-ui/react';
 import { useNavigate } from "react-router-dom";
+import {
+    Box,
+    Center,
+    Heading,
+    Text,
+    Stack,
+    Image,
+    Button
+  } from '@chakra-ui/react'
 
 
 
@@ -70,44 +78,105 @@ function SingleAlbum() {
 
 
         return (
-            <div>
+            <div className="single-album">
             {
                 albumInfo && (
 <>
-                <div>
-                <img src={albumInfo.images[1].url} />
-                <h2>{albumInfo.name}</h2>
-                <p>Number of tracks: {albumInfo.total_tracks}</p>
-                <p>Release date: {albumInfo.release_date}</p>
-                <p>Popularity (0-100): {albumInfo.popularity}</p>
-                </div>
 
-                <div className="album-buttons">
-                </div>
-                
-                    <Button 
-                    colorScheme={'purple'}
-                    bg={'purple.400'}
-                    rounded={'full'}
-                    px={6}
-                    _hover={{
-                        bg: 'purple.500',
-                    }}
-                    onClick={addToMyAlbums}
-                    >+ My Albums</Button>
-                
+                <Center py={12} bg={'white'} className="single-album-box">
+                    <Box
+                        className="single-album-box"
+                        role={'group'}
+                        p={6}
+                        maxW={'800px'}
+                        w={'full'}
+                        boxShadow={'xl'}
+                        rounded={'lg'}
+                        pos={'relative'}
+                        zIndex={0}>
+                        <div>
+                            <Box
+                                rounded={'lg'}
+                                mt={-12}
+                                pos={'relative'}
+                                height={'230px'}
+                                _after={{
+                                    transition: 'all .3s ease',
+                                    content: '""',
+                                    w: '230px',
+                                    h: 'full',
+                                    pos: 'absolute',
+                                    top: 5,
+                                    left: 0,
+                                    backgroundImage: `url(${albumInfo.images[1].url})`,
+                                    filter: 'blur(15px)',
+                                    zIndex: -1,
+                                }}
+                                _groupHover={{
+                                    _after: {
+                                    filter: 'blur(20px)',
+                                    },
+                                }}>
+                                <Image
+                                    rounded={'lg'}
+                                    height={230}
+                                    width={230}
+                                    objectFit={'cover'}
+                                    src={albumInfo.images[1].url}
+                                />
+                            </Box>
 
-                    <Button 
-                    type="submit"
-                    colorScheme={'purple'}
-                    bg={'purple.400'}
-                    rounded={'full'}
-                    px={6}
-                    _hover={{
-                        bg: 'purple.500',
-                    }}
-                    onClick={addToWishlist}
-                    >+ WishList</Button>
+                            <Stack pt={10} height={'120px'} align={'center'}>
+                                <Heading fontSize={'xl'} fontFamily={'body'} fontWeight={800}>
+                                    {albumInfo.name}
+                                </Heading>
+                                <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+                                    by {albumInfo.artists[0].name}
+                                </Text>
+                            </Stack>
+                        </div>  
+                        <div> 
+                        <Stack marginTop={'20px'} marginBottom={'60px'}> 
+                            <Text fontWeight={500} fontSize={'1xl'}>
+                            Number of tracks: {albumInfo.total_tracks}
+                            </Text>
+                            <Text fontWeight={500} fontSize={'1xl'}>
+                            Release date: {albumInfo.release_date}
+                            </Text>
+                            <Text fontWeight={500} fontSize={'1xl'}>
+                            Popularity (0-100): {albumInfo.popularity}
+                            </Text>
+                        </Stack>    
+
+                            <div className="album-buttons">
+                            <Button 
+                            colorScheme={'purple'}
+                            marginBottom={'20px'}
+                            backgroundImage={'linear-gradient(to bottom right, rgb(248 155 41), rgb(231 38 123))'}
+                            rounded={'full'}
+                            px={6}
+                            _hover={{
+                                bg: 'purple.500',
+                            }}
+                            onClick={addToMyAlbums}
+                            >+ My Albums</Button>
+                            <br />
+                            <Button 
+                            type="submit"
+                            colorScheme={'purple'}
+                            backgroundImage={'linear-gradient(to bottom right, rgb(248 155 41), rgb(231 38 123))'}
+                            rounded={'full'}
+                            px={8}
+                            _hover={{
+                                bg: 'purple.500',
+                            }}
+                            onClick={addToWishlist}
+                            >+ WishList</Button>
+                            </div>
+                        </div>     
+                    </Box>
+                    </Center>
+                
                 
 </>
                 )
