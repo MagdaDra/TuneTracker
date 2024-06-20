@@ -43,28 +43,37 @@
     width: 500px;
 }
 
+.add-album-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    height: 10vh;
+}
 
-/* 
 
-.search-input {
-    min-width: 70vw;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    border-radius: 0.5;
-
-} */
 
 .search-bar {
     margin-top: 2rem;
-    width: 80vw;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 
+}
+
+
+.search-input {
+    width: 80vw;
+    border-radius: 50px;
+    height: 7vh;
+    padding-left: 15px;
 }
 
 .search-tiles {
     margin: 2rem;
+}
+
+.search-icon {
+    width: 10px;
 }
 
 

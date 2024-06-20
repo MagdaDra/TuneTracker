@@ -8,9 +8,10 @@ import {
     Text,
     Stack,
     Image,
-    Input,
+    Button,
+    
   } from '@chakra-ui/react'
-
+import { Search2Icon } from '@chakra-ui/icons'
 
 function ArtistsMainScreen() {
 
@@ -61,10 +62,9 @@ function ArtistsMainScreen() {
         <>
             <div className="search-bar">
                 <form onSubmit={e => e.preventDefault()}>
-                <Stack spacing={3}>
-                    <Input 
-                        size='lg'
-                        variant='outline'
+                    
+                    <input 
+                        
                         className="search-input"
                         type="text" 
                         placeholder="Search artist" 
@@ -74,9 +74,25 @@ function ArtistsMainScreen() {
                         }}
                         onChange = {event => setSearch(event.target.value)}
                     />
-                </Stack>
+                
                 </form>
-                <button onClick={handleSearch}> Search </button>
+                <Button 
+                    className="search-button" 
+                    onClick={handleSearch}
+                    px={4}
+                    marginLeft={'8px'}
+                    marginTop={'6px'}
+                    
+                    bg={'white.400'}
+                    color={'white'}
+                        
+                    _hover={{
+                    bg: 'grey.500',
+                    }}
+                    _focus={{
+                    bg: 'blue.500',
+                    }}
+                > <Search2Icon/> </Button>
             </div>
 
             <div className="search-result">

@@ -156,7 +156,8 @@ function SingleAlbum() {
                             rounded={'full'}
                             px={6}
                             _hover={{
-                                bg: 'purple.500',
+                                bg: 'rgb(247,255,0)',
+                                color: 'rgb(231 38 123)'
                             }}
                             onClick={addToMyAlbums}
                             >+ My Albums</Button>
@@ -168,7 +169,8 @@ function SingleAlbum() {
                             rounded={'full'}
                             px={8}
                             _hover={{
-                                bg: 'purple.500',
+                                bg: 'rgb(247,255,0)',
+                                color: 'rgb(231 38 123)'
                             }}
                             onClick={addToWishlist}
                             >+ WishList</Button>

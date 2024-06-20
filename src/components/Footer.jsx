@@ -56,7 +56,7 @@ export default function Footer() {
         align={{ base: 'center', md: 'center' }}
         position={'fixed'}
         bottom={0}>
-        <Text>© 2024 TuneTracker by Magda. All rights reserved</Text>
+        <Text>© 2024 TuneTracker by Magda</Text>
         <Stack direction={'row'} spacing={6}>
           <SocialButton label={'Twitter'} href={'#'}>
             <FaTwitter />
