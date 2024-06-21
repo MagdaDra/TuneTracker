@@ -1,7 +1,17 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Button } from '@chakra-ui/react';
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+
+import {
+    Box,
+    Center,
+    Heading,
+    Text,
+    Stack,
+    Image,
+    Button,
+    
+  } from '@chakra-ui/react'
 
 export default function MyAlbums () {
 
@@ -12,7 +22,7 @@ export default function MyAlbums () {
         try {
             const response = await axios.get('http://localhost:5005/albums');
             setAlbums(response.data);
-        console.log(albums);
+        console.log('My albums:',albums);
         } catch (error) {
             console.log('error fetching my albums', error)
         }
@@ -35,24 +45,24 @@ export default function MyAlbums () {
     
     return (
         <div>
-            <h2 className="myAlbums">My Albums 🎵</h2>
+            <div className="header-myalbums">
+            <h3 className="myAlbums">My Albums </h3>
             
             <Link to='/main/myalbums/new'>
                 <Button 
-                colorScheme={'green'}
-                bg={'purple.400'}
+                colorScheme={'purple'}
+                backgroundImage={'linear-gradient(to bottom right, rgb(248 155 41), rgb(231 38 123))'}
                 rounded={'full'}
-                px={6}
+                px={8}
+                marginTop={'10'}
+                marginLeft={'10'}
                 _hover={{
-                    bg: 'purple.500',
+                    bg: 'rgb(247,255,0)',
+                    color: 'rgb(231 38 123)'
                 }}>Add album</Button>
             </Link>
-            
-            
-            <ul className="wish-list">
-            {albums.map(album => {
-                return (
-                    <li key={album.id} className="list-item">
+            </div>
+                    {/* <li key={album.id} className="list-item">
                         <img src={album.img} className="wishImg"/>
                         <h2>{album.title}</h2>
                         <p>by {album.artist}</p>
@@ -60,10 +70,98 @@ export default function MyAlbums () {
                             <button>Edit</button>
                         </Link> <br />
                         <button onClick={() => deleteProject(album.id)}>Delete</button>
-                    </li>
+                    </li> */}
+            
+            <div className="wish-list">
+            {albums.map(album => {
+                return (
+
+                    <NavLink key={album.id} to={`/main/album/${album.id}`}>
+                        <Center py={12} className="center-box" marginTop={'10'}>
+                        <Box
+                            role={'group'}
+                            p={6}
+                            maxW={'290px'}
+                            w={'full'}
+                            boxShadow={'2xl'}
+                            rounded={'lg'}
+                            pos={'relative'}
+                            zIndex={0}>
+                            <Box
+                            rounded={'lg'}
+                            mt={-12}
+                            pos={'relative'}
+                            height={'230px'}
+                            _after={{
+                                transition: 'all .3s ease',
+                                content: '""',
+                                w: 'full',
+                                h: 'full',
+                                pos: 'absolute',
+                                top: 5,
+                                left: 0,
+                                backgroundImage: `url(${album.img})`,
+                                filter: 'blur(15px)',
+                                zIndex: -1,
+                            }}
+                            _groupHover={{
+                                _after: {
+                                filter: 'blur(20px)',
+                                },
+                            }}>
+                            <Image
+                                rounded={'lg'}
+                                height={230}
+                                width={230}
+                                objectFit={'cover'}
+                                src={album.img}
+                            />
+                            </Box>
+                            <Stack pt={10} align={'center'} height={'130px'}>
+                            <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+                                {album.artist}
+                            </Text>
+                            <Heading fontSize={'1xl'} fontFamily={'body'} fontWeight={500}>
+                                {album.title}
+                            </Heading>
+                            </Stack>
+
+                        <div className="myAlbums-buttons"> 
+                        <NavLink to={`/main/myalbums/edit/${album.id}`}>
+                            <Button 
+                            colorScheme={'purple'}
+                            marginBottom={'20px'}
+                            backgroundImage={'linear-gradient(to bottom right, rgb(248 155 41), rgb(231 38 123))'}
+                            rounded={'full'}
+                            px={8}
+                            _hover={{
+                                bg: 'rgb(247,255,0)',
+                                color: 'rgb(231 38 123)'
+                            }}
+                            >Edit</Button>
+                        </NavLink>
+
+                            <Button 
+                            colorScheme={'purple'}
+                            marginBottom={'20px'}
+                            backgroundImage={'linear-gradient(to bottom right, rgb(248 155 41), rgb(231 38 123))'}
+                            rounded={'full'}
+                            px={6}
+                            _hover={{
+                                bg: 'rgb(247,255,0)',
+                                color: 'rgb(231 38 123)'
+                            }}
+                            onClick={deleteProject}
+                            >Delete</Button>
+                        </div>  
+                        </Box>
+                        </Center>
+                        </NavLink>    
+                       
+
                 )
             })}
-            </ul>
+            </div>
         </div>
     )
 

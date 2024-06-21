@@ -41,19 +41,7 @@ function AddMyAlbum() {
         }
     }
 
-    // return (
-    //     <div>
-    //         <form onSubmit = {handleSubmit}>
-    //             <label>Album&apos;s cover</label>
-    //             <input type="text" name="img" value={img} onChange={handleImg} />
-    //             <label>Album&apos;s title</label>
-    //             <input type="text" name="title" value={title} onChange={handleTitle} />
-    //             <label>Artist</label>
-    //             <input type="text" name="artist" value={artist} onChange={handleArtist} />
-    //             <button type="submit">Add Album</button>
-    //         </form>
-    //     </div>
-    // )
+
 
     return (
         <>
@@ -61,25 +49,25 @@ function AddMyAlbum() {
             Add Album
           </Heading>
           
-            <FormControl mr="5%" onSubmit = {handleSubmit}>
+            <FormControl onSubmit = {handleSubmit}>
                 <FormLabel htmlFor="album-cover" fontWeight={'600'} color="white">
                 Album cover
                 </FormLabel>
-                <Input id="album-cover" placeholder="Add cover" type="text" name="img" value={img} onChange={handleImg} marginBottom="20px"/>
+                <Input id="album-cover" placeholder="Add cover" type="text" name="img" value={img} onChange={handleImg} marginBottom="20px" paddingLeft={'5px'}/>
             </FormControl>
 
             <FormControl onSubmit = {handleSubmit}>
                 <FormLabel htmlFor="album-title" fontWeight={'600'} color="white">
                 Album title
                 </FormLabel>
-                <Input id="album-title" placeholder="Add title" type="text" name="title" value={title} onChange={handleTitle} marginBottom="20px"/>
+                <Input id="album-title" placeholder="Add title" type="text" name="title" value={title} onChange={handleTitle} marginBottom="20px" paddingLeft={'5px'}/>
             </FormControl>
           
-          <FormControl mt="2%" onSubmit = {handleSubmit}>
+          <FormControl onSubmit = {handleSubmit}>
             <FormLabel htmlFor="email" fontWeight={'600'} color="white">
               Artist
             </FormLabel>
-            <Input id="email" placeholder="Add artist" type="text" name="artist" value={artist} onChange={handleArtist} />
+            <Input id="email" placeholder="Add artist" type="text" name="artist" value={artist} onChange={handleArtist} marginBottom="20px" paddingLeft={'5px'} />
           </FormControl>
     
         <div className="add-album-button">

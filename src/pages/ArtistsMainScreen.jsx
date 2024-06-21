@@ -147,14 +147,6 @@ function ArtistsMainScreen() {
                             <Heading fontSize={'1xl'} fontFamily={'body'} fontWeight={500}>
                                 {album.name}
                             </Heading>
-                            {/* <Stack direction={'row'} align={'center'}>
-                                <Text fontWeight={800} fontSize={'xl'}>
-                                $57
-                                </Text>
-                                <Text textDecoration={'line-through'} color={'gray.600'}>
-                                $199
-                                </Text>
-                            </Stack> */}
                             </Stack>
                         </Box>
                         </Center>

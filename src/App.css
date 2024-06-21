@@ -5,20 +5,18 @@
     margin-top: 2rem;
 }
 
-.wishlist {
-    text-align: center;
-    font-weight: bolder;
-    margin-top: 2rem;
-
-}
-
 .wishImg {
     width: 100px;
 }
 
 .wish-list {
     margin-top: 2rem;
-    background-color: white
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 2rem;
+
 }
 
 .list-item {
@@ -81,3 +79,35 @@
     background-image: linear-gradient(to bottom right, rgb(248 155 41), rgb(231 38 123))
 }
 
+.form-fields {
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.myAlbums-buttons {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.myAlbums {
+    text-align: center;
+    font-weight: bolder;
+    margin-top: 2rem;
+    font-size: 4.5vh;
+    color: white;
+}
+
+.header-myalbums {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
