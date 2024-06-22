@@ -11,6 +11,7 @@ import SingleAlbum from './pages/SingleAlbum';
 import MyAlbums from './pages/MyAlbums';
 import EditMyAlbum from './pages/EditMyAlbum';
 import AddMyAlbum from './pages/AddMyAlbum';
+import NewReleases from './components/NewReleases';
 
 function App() {
   
@@ -27,6 +28,7 @@ function App() {
         <Route path='/main/myalbums' element={<Layout> <MyAlbums/> </Layout>} />
         <Route path='main/myalbums/edit/:albumId' element={<Layout> <EditMyAlbum /> </Layout>} />
         <Route path='/main/myalbums/new' element={<Layout> <AddMyAlbum /> </Layout>} />
+        <Route path='/main/newreleases' element={<NewReleases />} />
 
       </Routes> 
     </ChakraProvider>

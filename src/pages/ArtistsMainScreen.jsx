@@ -59,7 +59,7 @@ function ArtistsMainScreen() {
 
 
     return (
-        <>
+        <div className="margin-bottom">
             <div className="search-bar">
                 <form onSubmit={e => e.preventDefault()}>
                     
@@ -154,7 +154,7 @@ function ArtistsMainScreen() {
                     )
                 })}
             </div>
-        </>
+        </div>
     )
 
 }

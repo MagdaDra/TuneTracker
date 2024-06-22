@@ -44,7 +44,7 @@ export default function MyAlbums () {
     }
     
     return (
-        <div>
+        <div className="margin-bottom">
             <div className="header-myalbums">
             <h3 className="myAlbums">My Albums </h3>
             
@@ -62,21 +62,13 @@ export default function MyAlbums () {
                 }}>Add album</Button>
             </Link>
             </div>
-                    {/* <li key={album.id} className="list-item">
-                        <img src={album.img} className="wishImg"/>
-                        <h2>{album.title}</h2>
-                        <p>by {album.artist}</p>
-                        <Link to={`/main/myalbums/edit/${album.id}`}>
-                            <button>Edit</button>
-                        </Link> <br />
-                        <button onClick={() => deleteProject(album.id)}>Delete</button>
-                    </li> */}
+            
             
             <div className="wish-list">
             {albums.map(album => {
                 return (
 
-                    <NavLink key={album.id} to={`/main/album/${album.id}`}>
+                    <div key={album.id}>
                         <Center py={12} className="center-box" marginTop={'10'}>
                         <Box
                             role={'group'}
@@ -87,6 +79,8 @@ export default function MyAlbums () {
                             rounded={'lg'}
                             pos={'relative'}
                             zIndex={0}>
+
+                            <NavLink to={`/main/album/${album.spotify_id}`}> 
                             <Box
                             rounded={'lg'}
                             mt={-12}
@@ -125,6 +119,7 @@ export default function MyAlbums () {
                                 {album.title}
                             </Heading>
                             </Stack>
+                            </NavLink>
 
                         <div className="myAlbums-buttons"> 
                         <NavLink to={`/main/myalbums/edit/${album.id}`}>
@@ -151,12 +146,12 @@ export default function MyAlbums () {
                                 bg: 'rgb(247,255,0)',
                                 color: 'rgb(231 38 123)'
                             }}
-                            onClick={deleteProject}
+                            onClick={()=>deleteProject(album.id)}
                             >Delete</Button>
                         </div>  
                         </Box>
                         </Center>
-                        </NavLink>    
+                        </div>    
                        
 
                 )
