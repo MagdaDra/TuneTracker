@@ -115,3 +115,12 @@
 .margin-bottom {
     margin-bottom: 64px
 }
+
+.release-heading {
+    text-align: center;
+    font-weight: bolder;
+    padding-top: 2rem;
+    font-size: 4.5vh;
+    color: white;
+    border-top: 5px solid white;
+}

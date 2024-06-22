@@ -13,7 +13,8 @@ import {
   } from '@chakra-ui/react'
 import { Search2Icon } from '@chakra-ui/icons'
 
-function ArtistsMainScreen() {
+
+function ArtistsMainScreen({handleSearching, hi}) {
 
     const [albumsData, setAlbumsData] = useState([])
     const [search, setSearch] = useState("")
@@ -28,6 +29,10 @@ function ArtistsMainScreen() {
     // Display the albums to the user
     
     const handleSearch = async () => {
+
+        handleSearching(true)
+        hi()
+
         //console.log("Search for " + search)
         
         // Get request using search to get the Artist ID
@@ -55,11 +60,11 @@ function ArtistsMainScreen() {
         console.log(albums)
     }
 
-
+    
 
 
     return (
-        <div className="margin-bottom">
+        <div>
             <div className="search-bar">
                 <form onSubmit={e => e.preventDefault()}>
                     
