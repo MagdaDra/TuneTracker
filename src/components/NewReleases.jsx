@@ -37,19 +37,12 @@ import axios from 'axios';
         }
     }
 
-    //const albumsArray = albums.albums.items
-
-    console.log("Albums: ",albums)
+   
 
     useEffect(() => {
         getNewAlbums();
     }, [accessToken])
 
-    {/* <div key={album.id}>
-        <img src={album.images[2].url} />
-        <h1>{album.artists[0].name}</h1>
-        <h2>{album.name}</h2>
-    </div> */}
 
     return (
         

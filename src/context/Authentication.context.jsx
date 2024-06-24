@@ -6,6 +6,7 @@ const SpotifyAuthContext = createContext();
 // Create a wrapper
 const SpotifyAuthProviderWrapper = props => {
   const [token, setToken] = useState(undefined);
+  const [user, setUser] = useState(undefined);
   const clientId = 'd41b6b28c6264b1fba6b949297186448';
   const navigate = useNavigate();
 
@@ -98,6 +99,15 @@ const SpotifyAuthProviderWrapper = props => {
         localStorage.setItem('refresh_token', response.refresh_token);
 
         setToken(response.access_token);
+
+        const userResult = await fetch('https://api.spotify.com/v1/me', {
+          method: 'GET',
+          headers: {Authorization: `Bearer ${response.access_token}`}
+        })
+
+        const userResponse = await userResult.json()
+
+        setUser(userResponse)
       }
     } catch (error) {
       console.log('error getting the access token', error);
@@ -129,6 +139,15 @@ const SpotifyAuthProviderWrapper = props => {
 
       localStorage.setItem('access_token', response.access_token);
       localStorage.setItem('refresh_token', response.refresh_token);
+
+      const userResult = await fetch('https://api.spotify.com/v1/me', {
+        method: 'GET',
+        headers: {Authorization: `Bearer ${response.access_token}`}
+      })
+
+      const userResponse = await userResult.json()
+
+      setUser(userResponse)
     }
   };
 
@@ -137,7 +156,7 @@ const SpotifyAuthProviderWrapper = props => {
   }, []);
 
   return (
-    <SpotifyAuthContext.Provider value={{ token, authenticateUser }}>
+    <SpotifyAuthContext.Provider value={{ token, user, authenticateUser }}>
       {props.children}
     </SpotifyAuthContext.Provider>
   );

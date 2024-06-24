@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useState, useContext, useEffect} from 'react';
 import { SpotifyAuthContext } from "../context/Authentication.context";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import {
     Box,
     Center,
@@ -10,8 +10,9 @@ import {
     Text,
     Stack,
     Image,
-    Button
+    Button,
   } from '@chakra-ui/react'
+import { FaStar } from "react-icons/fa";
 
 
 
@@ -21,6 +22,9 @@ function SingleAlbum() {
     const value = useContext(SpotifyAuthContext)
     const accessToken = value.token;
     const [albumInfo, setAlbumInfo] = useState(null)
+    const [button, setButton] = useState("+ My Albums")
+    const [rating, setRating] = useState(null)
+    const [hover, setHover] = useState(null)
     const navigate = useNavigate()
 
     // get request with Album ID to receive album details
@@ -74,7 +78,7 @@ function SingleAlbum() {
 
     useEffect(() => {
         getAlbum();
-    }, [])
+    }, [accessToken])
 
 
     return (
@@ -126,26 +130,69 @@ function SingleAlbum() {
                             />
                         </Box>
 
-                        <Stack pt={10} height={'160px'} align={'left'}>
-                            <Heading fontSize={'xl'} fontFamily={'body'} fontWeight={800} maxW={350} marginBottom={3}>
+                        <Stack pt={10} height={'600px'} align={'left'}>
+                            <Heading fontSize={'xl'} fontFamily={'body'} fontWeight={800} maxW={350}>
                                 {albumInfo.name}
                             </Heading>
-                            <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+                            <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'} marginBottom={2}>
                                 by {albumInfo.artists[0].name}
                             </Text>
+                        <NavLink to={albumInfo.external_urls.spotify}> 
+                            <Image
+                                src='/src/assets/spotify.png'
+                                className = 'spotify-icon'
+                                />
+                        </NavLink>    
+                        <Text marginTop={4}> 
+                        Tracks: <br/>
+                        
+                        <ol className="singleAlbum-list">
+                        {albumInfo.tracks.items.map(track => {
+                            return (
+                                <li className="singleAlbum-item" key={albumInfo.id}> {track.name} </li>
+                            )
+                        })}
+                        </ol>
+                        </Text>
                         </Stack>
                     </div>  
                     <div> 
                     <Stack marginTop={'20px'} marginBottom={'60px'}> 
                         <Text fontWeight={500} fontSize={'1xl'}>
-                        Number of tracks: {albumInfo.total_tracks}
+                        Number of tracks: <span className="text-styling"> {albumInfo.total_tracks} </span>
                         </Text>
                         <Text fontWeight={500} fontSize={'1xl'}>
-                        Release date: {albumInfo.release_date}
+                        Release date: <span className="text-styling"> {albumInfo.release_date} </span>
                         </Text>
                         <Text fontWeight={500} fontSize={'1xl'}>
-                        Popularity (0-100): {albumInfo.popularity}
+                        Popularity (0-100): <span className="text-styling"> {albumInfo.popularity} </span>
                         </Text>
+                        
+                        <div className="star-rating">
+                        <Text fontWeight={500} fontSize={'1xl'} marginRight={3}>
+                        Your rate: 
+                        </Text>
+                            {[...Array(5)].map((star, index )=> {
+                                const currentRating = index + 1;
+                                return (
+                                    <label key={star}>
+                                        <input 
+                                        type="radio" 
+                                        name="rating"
+                                        value={currentRating} 
+                                        onClick={() => setRating(currentRating)}    
+                                        />
+                                        <FaStar 
+                                            className="star" 
+                                            size={20} 
+                                            color={currentRating <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
+                                            onMouseEnter={() => setHover(currentRating)}
+                                            onMouseLeave={() => setHover(null)}
+                                            />
+                                    </label>
+                                );
+                            })}   
+                        </div>
                     </Stack>    
 
                         <div className="album-buttons">
@@ -159,8 +206,13 @@ function SingleAlbum() {
                             bg: 'rgb(247,255,0)',
                             color: 'rgb(231 38 123)'
                         }}
-                        onClick={addToMyAlbums}
-                        >+ My Albums</Button>
+                        onClick ={ () => {
+                            
+                            addToMyAlbums()
+                            setButton("✔️ My Albums")
+                            
+                        }}
+                        > {button} </Button>
                         <br />
                         <Button 
                         type="submit"
@@ -173,6 +225,7 @@ function SingleAlbum() {
                             color: 'rgb(231 38 123)'
                         }}
                         onClick={addToWishlist}
+                       
                         >+ WishList</Button>
                         </div>
                     </div>     

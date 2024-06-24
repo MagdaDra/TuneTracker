@@ -4,7 +4,6 @@ import {
   Flex,
   Avatar,
   HStack,
-
   IconButton,
   Button,
   Menu,
@@ -12,12 +11,21 @@ import {
   useDisclosure,
   useColorModeValue,
   Stack,
+  Text
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon} from '@chakra-ui/icons';
+import { useContext, useEffect } from 'react';
+import { SpotifyAuthContext } from '../context/Authentication.context';
 
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const value = useContext(SpotifyAuthContext);
+  const user = value.user;
+
+  console.log("User: ",user)
+
+  
 
   return (
     <>
@@ -47,6 +55,7 @@ export default function Navbar() {
           <Flex alignItems={'center'}>
           
             <Menu>
+                <Text marginRight={2}> {user && user.display_name} </Text>
               <MenuButton
                 as={Button}
                 rounded={'full'}
@@ -55,9 +64,7 @@ export default function Navbar() {
                 minW={0}>
                 <Avatar
                   size={'sm'}
-                  src={
-                    'https://ca.slack-edge.com/T01BAR6KJP4-U06L6J45SP2-36a67df8095c-512'
-                  }
+                  src= {user && user.images[1].url}
                 />
               </MenuButton>
             </Menu>
