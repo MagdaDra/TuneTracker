@@ -12,7 +12,9 @@ import MyAlbums from './pages/MyAlbums';
 import EditMyAlbum from './pages/EditMyAlbum';
 import AddMyAlbum from './pages/AddMyAlbum';
 import NewReleases from './components/NewReleases';
+import AddReview from './pages/Add Review';
 import { useState } from 'react';
+
 
 function App() {
   const [isSearching, setIsSearching] = useState(false)
@@ -34,6 +36,7 @@ function App() {
         <Route path='/main/myalbums' element={<Layout> <MyAlbums/> </Layout>} />
         <Route path='main/myalbums/edit/:albumId' element={<Layout> <EditMyAlbum /> </Layout>} />
         <Route path='/main/myalbums/new' element={<Layout> <AddMyAlbum /> </Layout>} />
+        <Route path='/main/review/:albumId' element={<Layout> <AddReview/> </Layout> } />
         
 
       </Routes> 

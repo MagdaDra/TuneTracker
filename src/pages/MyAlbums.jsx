@@ -72,7 +72,7 @@ export default function MyAlbums () {
                     .filter(album => userInfo && album.user === userInfo.display_name)
                     .map(album => (
                     <div key={album.id}>
-                        <NavLink></NavLink>
+                        
                         <Center py={12} className="center-box" marginTop={'10'}>
                         <Box
                             role={'group'}

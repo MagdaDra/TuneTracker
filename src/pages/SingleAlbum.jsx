@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useState, useContext, useEffect} from 'react';
 import { SpotifyAuthContext } from "../context/Authentication.context";
 import axios from "axios";
-import { useNavigate, NavLink } from "react-router-dom";
+import { useNavigate, NavLink, Link } from "react-router-dom";
 import {
     Box,
     Center,
@@ -104,7 +104,7 @@ function SingleAlbum() {
 
             getRating()
         } catch (error) {
-            console.log('Error adding the rating')
+            console.log('Error adding the rating', error)
         }
     }
 
@@ -196,7 +196,7 @@ function SingleAlbum() {
                         </Stack>
                     </div>  
                     <div> 
-                    <Stack marginTop={'20px'} marginBottom={'60px'}> 
+                    <Stack marginTop={'20px'} marginBottom={'50px'}> 
                         <Text fontWeight={500} fontSize={'1xl'}>
                         Number of tracks: <span className="text-styling"> {albumInfo.total_tracks} </span>
                         </Text>
@@ -247,10 +247,9 @@ function SingleAlbum() {
                         <div className="album-buttons">
                         <Button 
                         colorScheme={'purple'}
-                        marginBottom={'20px'}
                         backgroundImage={'linear-gradient(to bottom right, rgb(248 155 41), rgb(231 38 123))'}
                         rounded={'full'}
-                        px={6}
+                        
                         _hover={{
                             bg: 'rgb(247,255,0)',
                             color: 'rgb(231 38 123)'
@@ -262,7 +261,6 @@ function SingleAlbum() {
                             
                         }}
                         > {button} </Button>
-                        <br />
                         <Button 
                         type="submit"
                         colorScheme={'purple'}
@@ -276,6 +274,18 @@ function SingleAlbum() {
                         onClick={addToWishlist}
                        
                         >+ WishList</Button>
+
+                        <Link to={`/main/review/${albumId}`}>
+                        <Button 
+                        colorScheme={'purple'}
+                        backgroundImage={'linear-gradient(to bottom right, rgb(248 155 41), rgb(231 38 123))'}
+                        rounded={'full'}
+                        px={16}
+                        _hover={{
+                            bg: 'rgb(247,255,0)',
+                            color: 'rgb(231 38 123)'
+                        }}>+ Review</Button>
+                        </Link>
                         </div>
                     </div>     
                 </Box>

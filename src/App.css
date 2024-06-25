@@ -165,3 +165,11 @@ input[type=radio]{
 .track-list {
     margin-top: 20px;
 }
+
+.album-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 160px;
+    margin-bottom: 20px;
+}
