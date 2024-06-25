@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { SpotifyAuthContext } from "../context/Authentication.context";
 import axios from "axios";
 import { Link, NavLink } from "react-router-dom";
 import {
@@ -15,7 +16,8 @@ import {
 export default function WishList () {
 
     const [albums, setAlbums] = useState([]);
-    
+    const value = useContext(SpotifyAuthContext)
+    const userInfo = value.user;
 
     const getAlbums = async () => {
         try {
@@ -63,98 +65,97 @@ export default function WishList () {
             </div>
 
             
-            <ul className="wish-list">
-            {albums.map(album => {
-                return (
+            <div className="wish-list">
+                {albums
+                    .filter(album => userInfo && album.user === userInfo.display_name)
+                    .map(album => (
+                    <div key={album.id}>
+                        <NavLink></NavLink>
+                        <Center py={12} className="center-box" marginTop={'10'}>
+                        <Box
+                            role={'group'}
+                            p={6}
+                            maxW={'290px'}
+                            w={'full'}
+                            boxShadow={'2xl'}
+                            rounded={'lg'}
+                            pos={'relative'}
+                            zIndex={0}>
+                            <NavLink to={`/main/album/${album.spotify_id}`}>
+                            <Box
+                                rounded={'lg'}
+                                mt={-12}
+                                pos={'relative'}
+                                height={'230px'}
+                                _after={{
+                                transition: 'all .3s ease',
+                                content: '""',
+                                w: 'full',
+                                h: 'full',
+                                pos: 'absolute',
+                                top: 5,
+                                left: 0,
+                                backgroundImage: `url(${album.img})`,
+                                filter: 'blur(15px)',
+                                zIndex: -1,
+                                }}
+                                _groupHover={{
+                                _after: {
+                                    filter: 'blur(20px)',
+                                },
+                                }}>
+                                <Image
+                                rounded={'lg'}
+                                height={230}
+                                width={230}
+                                objectFit={'cover'}
+                                src={album.img}
+                                />
+                            </Box>
+                            <Stack pt={10} align={'center'} height={'130px'}>
+                                <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+                                {album.artist}
+                                </Text>
+                                <Heading fontSize={'1xl'} fontFamily={'body'} fontWeight={500}>
+                                {album.title}
+                                </Heading>
+                            </Stack>
+                            </NavLink>
+                            <div className="myAlbums-buttons">
+                            <NavLink to={`/main/wishlist/edit/${album.id}`}>
+                                <Button
+                                colorScheme={'purple'}
+                                marginBottom={'20px'}
+                                backgroundImage={'linear-gradient(to bottom right, rgb(248 155 41), rgb(231 38 123))'}
+                                rounded={'full'}
+                                px={8}
+                                _hover={{
+                                    bg: 'rgb(247,255,0)',
+                                    color: 'rgb(231 38 123)',
+                                }}>
+                                Edit
+                                </Button>
+                            </NavLink>
+                            <Button
+                                colorScheme={'purple'}
+                                marginBottom={'20px'}
+                                backgroundImage={'linear-gradient(to bottom right, rgb(248 155 41), rgb(231 38 123))'}
+                                rounded={'full'}
+                                px={6}
+                                _hover={{
+                                bg: 'rgb(247,255,0)',
+                                color: 'rgb(231 38 123)',
+                                }}
+                                onClick={() => deleteProject(album.id)}>
+                                Delete
+                            </Button>
+                            </div>
+                        </Box>
+                        </Center>
+                    </div>
+                    ))}
+            </div>
 
-            <div key={album.id}>
-                <NavLink></NavLink>    
-                <Center py={12} className="center-box" marginTop={'10'}>
-                <Box
-                    role={'group'}
-                    p={6}
-                    maxW={'290px'}
-                    w={'full'}
-                    boxShadow={'2xl'}
-                    rounded={'lg'}
-                    pos={'relative'}
-                    zIndex={0}>
-                    
-                    <NavLink to={`/main/album/${album.spotify_id}`}>  
-                    <Box
-                    rounded={'lg'}
-                    mt={-12}
-                    pos={'relative'}
-                    height={'230px'}
-                    _after={{
-                        transition: 'all .3s ease',
-                        content: '""',
-                        w: 'full',
-                        h: 'full',
-                        pos: 'absolute',
-                        top: 5,
-                        left: 0,
-                        backgroundImage: `url(${album.img})`,
-                        filter: 'blur(15px)',
-                        zIndex: -1,
-                    }}
-                    _groupHover={{
-                        _after: {
-                        filter: 'blur(20px)',
-                        },
-                    }}>
-                    <Image
-                        rounded={'lg'}
-                        height={230}
-                        width={230}
-                        objectFit={'cover'}
-                        src={album.img}
-                    />
-                    </Box>
-                    <Stack pt={10} align={'center'} height={'130px'}>
-                    <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
-                        {album.artist}
-                    </Text>
-                    <Heading fontSize={'1xl'} fontFamily={'body'} fontWeight={500}>
-                        {album.title}
-                    </Heading>
-                    </Stack>
-
-                    </NavLink>
-                <div className="myAlbums-buttons"> 
-                <NavLink to={`/main/wishlist/edit/${album.id}`}>
-                    <Button 
-                    colorScheme={'purple'}
-                    marginBottom={'20px'}
-                    backgroundImage={'linear-gradient(to bottom right, rgb(248 155 41), rgb(231 38 123))'}
-                    rounded={'full'}
-                    px={8}
-                    _hover={{
-                        bg: 'rgb(247,255,0)',
-                        color: 'rgb(231 38 123)'
-                    }}
-                    >Edit</Button>
-                </NavLink>
-
-                    <Button 
-                    colorScheme={'purple'}
-                    marginBottom={'20px'}
-                    backgroundImage={'linear-gradient(to bottom right, rgb(248 155 41), rgb(231 38 123))'}
-                    rounded={'full'}
-                    px={6}
-                    _hover={{
-                        bg: 'rgb(247,255,0)',
-                        color: 'rgb(231 38 123)'
-                    }}
-                    onClick={() => deleteProject(album.id)}
-                    >Delete</Button>
-                </div>  
-                </Box>
-                </Center>
-                </div>    
-                )
-            })}
-            </ul>
         </div>
     )
 

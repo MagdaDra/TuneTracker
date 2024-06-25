@@ -14,7 +14,7 @@ import {
   Text
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon} from '@chakra-ui/icons';
-import { useContext, useEffect } from 'react';
+import { useContext} from 'react';
 import { SpotifyAuthContext } from '../context/Authentication.context';
 
 

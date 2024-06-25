@@ -21,6 +21,7 @@ function SingleAlbum() {
     const {albumId} = useParams();
     const value = useContext(SpotifyAuthContext)
     const accessToken = value.token;
+    const userInfo = value.user;
     const [albumInfo, setAlbumInfo] = useState(null)
     const [button, setButton] = useState("+ My Albums")
     const [rating, setRating] = useState(null)
@@ -55,7 +56,7 @@ function SingleAlbum() {
     const addToWishlist = async () => {
       try {
       const newRecord = {
-          title: albumInfo.name, artist: albumInfo.artists[0].name, img: albumInfo.images[1].url, spotify_id: albumId} 
+          title: albumInfo.name, artist: albumInfo.artists[0].name, img: albumInfo.images[1].url, spotify_id: albumId, user: userInfo.display_name} 
           await axios.post('http://localhost:5005/wishlist', newRecord)
          navigate('/main/wishlist')
      } catch (error) {
@@ -65,7 +66,7 @@ function SingleAlbum() {
     const addToMyAlbums = async () => {
       try {
       const newRecord = {
-          title: albumInfo.name, artist: albumInfo.artists[0].name, img: albumInfo.images[1].url, spotify_id: albumId} 
+          title: albumInfo.name, artist: albumInfo.artists[0].name, img: albumInfo.images[1].url, spotify_id: albumId, user: userInfo.display_name} 
           await axios.post('http://localhost:5005/albums', newRecord)
          navigate('/main/myalbums')
      } catch (error) {
