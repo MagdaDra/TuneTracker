@@ -64,11 +64,12 @@ const EditWishAlbum = () => {
     }, [albumId]);
 
     return (
-        <>
+        <div className="form">
           <Heading w="100%" textAlign={'center'} fontWeight="600" mb="2%" color="white" marginTop="30px" marginBottom="20px">
             Edit Album
           </Heading>
           
+          <div className="form-fields">
             <FormControl onSubmit = {handleSubmit}>
                 <FormLabel htmlFor="album-cover" fontWeight={'600'} color="white">
                 Album cover
@@ -83,15 +84,16 @@ const EditWishAlbum = () => {
                 <Input id="album-title" placeholder="Add title" type="text" name="title" value={title} onChange={handleTitle} marginBottom="20px" paddingLeft={'5px'}/>
             </FormControl>
           
-          <FormControl onSubmit = {handleSubmit}>
-            <FormLabel htmlFor="email" fontWeight={'600'} color="white">
-              Artist
-            </FormLabel>
-            <Input id="email" placeholder="Add artist" type="text" name="artist" value={artist} onChange={handleArtist} marginBottom="20px" paddingLeft={'5px'} />
-          </FormControl>
-    
-        <div className="add-album-button">
-          <Button 
+            <FormControl onSubmit = {handleSubmit}>
+              <FormLabel htmlFor="email" fontWeight={'600'} color="white">
+                Artist
+              </FormLabel>
+              <Input id="email" placeholder="Add artist" type="text" name="artist" value={artist} onChange={handleArtist} marginBottom="20px" paddingLeft={'5px'} />
+            </FormControl>
+          </div>
+          
+          <div className="add-album-button">
+            <Button 
             type="submit"
             color={'white'}
             backgroundImage={'linear-gradient(to bottom right, rgb(248 155 41), rgb(231 38 123))'}
@@ -102,9 +104,10 @@ const EditWishAlbum = () => {
                 color: 'rgb(231 38 123)'
             }}
             onClick={handleSubmit}
-            >Edit Album</Button>
-            </div>
-        </>
+            >Edit Album
+            </Button>
+          </div>
+        </div>
       )
 
 }

@@ -66,27 +66,27 @@ function AddWishAlbum() {
                 <Input id="album-title" placeholder="Add title" type="text" name="title" value={title} onChange={handleTitle} paddingLeft={'5px'} marginBottom="20px"/>
             </FormControl>
           
-          <FormControl onSubmit = {handleSubmit}>
-            <FormLabel htmlFor="email" fontWeight={'600'} color="white">
-              Artist
-            </FormLabel>
-            <Input id="email" placeholder="Add artist" type="text" name="artist" value={artist} onChange={handleArtist} paddingLeft={'5px'} marginBottom="20px"/>
-          </FormControl>
+            <FormControl onSubmit = {handleSubmit}>
+              <FormLabel htmlFor="email" fontWeight={'600'} color="white">
+                Artist
+              </FormLabel>
+              <Input id="email" placeholder="Add artist" type="text" name="artist" value={artist} onChange={handleArtist} paddingLeft={'5px'} marginBottom="20px"/>
+            </FormControl>
           </div>
     
-        <div className="add-album-button">
-          <Button 
-            type="submit"
-            color={'white'}
-            backgroundImage={'linear-gradient(to bottom right, rgb(248 155 41), rgb(231 38 123))'}
-            rounded={'full'}
-            px={8}
-            _hover={{
-                bg: 'rgb(247,255,0)',
-                color: 'rgb(231 38 123)'
-            }}
-            onClick={handleSubmit}
-            >Add Album</Button>
+          <div className="add-album-button">
+            <Button 
+              type="submit"
+              color={'white'}
+              backgroundImage={'linear-gradient(to bottom right, rgb(248 155 41), rgb(231 38 123))'}
+              rounded={'full'}
+              px={8}
+              _hover={{
+                  bg: 'rgb(247,255,0)',
+                  color: 'rgb(231 38 123)'
+              }}
+              onClick={handleSubmit}
+              >Add Album</Button>
             </div>
         </div>
       )
