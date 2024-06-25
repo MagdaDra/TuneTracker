@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { SpotifyAuthContext } from "../context/Authentication.context";
 import axios from "axios";
 import { Link, NavLink } from "react-router-dom";
 
@@ -16,6 +17,8 @@ import {
 export default function MyAlbums () {
 
     const [albums, setAlbums] = useState([]);
+    const value = useContext(SpotifyAuthContext)
+    const userInfo = value.user;
     
 
     const getAlbums = async () => {
@@ -65,10 +68,11 @@ export default function MyAlbums () {
             
             
             <div className="wish-list">
-            {albums.map(album => {
-                return (
-
+                {albums
+                    .filter(album => userInfo && album.user === userInfo.display_name)
+                    .map(album => (
                     <div key={album.id}>
+                        <NavLink></NavLink>
                         <Center py={12} className="center-box" marginTop={'10'}>
                         <Box
                             role={'group'}
@@ -79,14 +83,13 @@ export default function MyAlbums () {
                             rounded={'lg'}
                             pos={'relative'}
                             zIndex={0}>
-
-                            <NavLink to={`/main/album/${album.spotify_id}`}> 
+                            <NavLink to={`/main/album/${album.spotify_id}`}>
                             <Box
-                            rounded={'lg'}
-                            mt={-12}
-                            pos={'relative'}
-                            height={'230px'}
-                            _after={{
+                                rounded={'lg'}
+                                mt={-12}
+                                pos={'relative'}
+                                height={'230px'}
+                                _after={{
                                 transition: 'all .3s ease',
                                 content: '""',
                                 w: 'full',
@@ -97,65 +100,62 @@ export default function MyAlbums () {
                                 backgroundImage: `url(${album.img})`,
                                 filter: 'blur(15px)',
                                 zIndex: -1,
-                            }}
-                            _groupHover={{
+                                }}
+                                _groupHover={{
                                 _after: {
-                                filter: 'blur(20px)',
+                                    filter: 'blur(20px)',
                                 },
-                            }}>
-                            <Image
+                                }}>
+                                <Image
                                 rounded={'lg'}
                                 height={230}
                                 width={230}
                                 objectFit={'cover'}
                                 src={album.img}
-                            />
+                                />
                             </Box>
                             <Stack pt={10} align={'center'} height={'130px'}>
-                            <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+                                <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
                                 {album.artist}
-                            </Text>
-                            <Heading fontSize={'1xl'} fontFamily={'body'} fontWeight={500}>
+                                </Text>
+                                <Heading fontSize={'1xl'} fontFamily={'body'} fontWeight={500}>
                                 {album.title}
-                            </Heading>
+                                </Heading>
                             </Stack>
                             </NavLink>
-
-                        <div className="myAlbums-buttons"> 
-                        <NavLink to={`/main/myalbums/edit/${album.id}`}>
-                            <Button 
-                            colorScheme={'purple'}
-                            marginBottom={'20px'}
-                            backgroundImage={'linear-gradient(to bottom right, rgb(248 155 41), rgb(231 38 123))'}
-                            rounded={'full'}
-                            px={8}
-                            _hover={{
+                            <div className="myAlbums-buttons">
+                            <NavLink to={`/main/myalbums/edit/${album.id}`}>
+                                <Button
+                                colorScheme={'purple'}
+                                marginBottom={'20px'}
+                                backgroundImage={'linear-gradient(to bottom right, rgb(248 155 41), rgb(231 38 123))'}
+                                rounded={'full'}
+                                px={8}
+                                _hover={{
+                                    bg: 'rgb(247,255,0)',
+                                    color: 'rgb(231 38 123)',
+                                }}>
+                                Edit
+                                </Button>
+                            </NavLink>
+                            <Button
+                                colorScheme={'purple'}
+                                marginBottom={'20px'}
+                                backgroundImage={'linear-gradient(to bottom right, rgb(248 155 41), rgb(231 38 123))'}
+                                rounded={'full'}
+                                px={6}
+                                _hover={{
                                 bg: 'rgb(247,255,0)',
-                                color: 'rgb(231 38 123)'
-                            }}
-                            >Edit</Button>
-                        </NavLink>
-
-                            <Button 
-                            colorScheme={'purple'}
-                            marginBottom={'20px'}
-                            backgroundImage={'linear-gradient(to bottom right, rgb(248 155 41), rgb(231 38 123))'}
-                            rounded={'full'}
-                            px={6}
-                            _hover={{
-                                bg: 'rgb(247,255,0)',
-                                color: 'rgb(231 38 123)'
-                            }}
-                            onClick={()=>deleteProject(album.id)}
-                            >Delete</Button>
-                        </div>  
+                                color: 'rgb(231 38 123)',
+                                }}
+                                onClick={() => deleteProject(album.id)}>
+                                Delete
+                            </Button>
+                            </div>
                         </Box>
                         </Center>
-                        </div>    
-                       
-
-                )
-            })}
+                    </div>
+                    ))}
             </div>
         </div>
     )

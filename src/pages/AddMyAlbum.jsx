@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { SpotifyAuthContext } from "../context/Authentication.context";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import {
@@ -14,6 +15,8 @@ function AddMyAlbum() {
     const [artist, setArtist] = useState("");
     const [img, setImg] = useState("");
     const navigate = useNavigate();
+    const value = useContext(SpotifyAuthContext)
+    const userInfo = value.user;
 
     const handleTitle = (event) => {
         setTitle(event.target.value)
@@ -32,7 +35,7 @@ function AddMyAlbum() {
     
         try {
            const newRecord = {
-               title, artist, img
+               title, artist, img, user: userInfo.display_name
                } 
                await axios.post('http://localhost:5005/albums', newRecord)
                navigate('/main/myalbums')

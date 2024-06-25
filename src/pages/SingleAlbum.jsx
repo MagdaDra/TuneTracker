@@ -15,8 +15,6 @@ import {
 import { FaStar } from "react-icons/fa";
 
 
-
-
 function SingleAlbum() {
     const {albumId} = useParams();
     const value = useContext(SpotifyAuthContext)

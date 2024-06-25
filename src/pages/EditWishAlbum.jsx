@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
+import { SpotifyAuthContext } from "../context/Authentication.context";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
 import {
     Button,
     Heading,
@@ -17,6 +17,8 @@ const EditWishAlbum = () => {
     const [img, setImg] = useState("");
     const navigate = useNavigate();
     const {albumId} = useParams();
+    const value = useContext(SpotifyAuthContext)
+    const userInfo = value.user;
 
     const handleTitle = (event) => {
         setTitle(event.target.value)
@@ -35,7 +37,7 @@ const EditWishAlbum = () => {
 
         try {
           const album = {
-            title, artist, img
+            title, artist, img, user: userInfo.display_name
           } 
           await axios.put(`http://localhost:5005/wishlist/${albumId}?_embed=tasks`, album);
           navigate(`/main/wishlist`)
