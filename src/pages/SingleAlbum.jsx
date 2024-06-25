@@ -29,7 +29,7 @@ function SingleAlbum() {
     // get request with Album ID to receive album details
 
     
-    console.log('Album ID is: ', albumId)
+    //console.log('Album ID is: ', albumId)
     
     const getAlbum = async () => { 
         
@@ -72,13 +72,54 @@ function SingleAlbum() {
      }
     }
 
+    const getRating = async() => {
+        try {
+            const response = await axios.get(`http://localhost:5005/ratings`)
+
+            const myRating = response.data.find(albumRating => albumRating.spotify_id === albumId)
+            setRating(myRating)
+        } catch (error) {
+            console.log("Error fetching rating value", error)
+            setRating(null)
+        }
+    }
+
+    
+
+    const addRating = async (ratingValue) => {
+        try {
+            if(rating) {
+                const updatedRating = {
+                    ratingValue,
+                    user: userInfo.display_name, spotify_id: albumId
+                }
+                await axios.put(`http://localhost:5005/ratings/${rating.id}`, updatedRating)
+    
+            } else {
+    
+                const newRating = {
+                    ratingValue,  user: userInfo.display_name, spotify_id: albumId}
+                    await axios.post('http://localhost:5005/ratings', newRating)
+            }
+
+            getRating()
+        } catch (error) {
+            console.log('Error adding the rating')
+        }
+    }
+
+    
+
+
 
 
 
     useEffect(() => {
         getAlbum();
+        getRating();
     }, [accessToken])
 
+    console.log("Rating is: ",rating)
 
     return (
         <div className="single-album">
@@ -86,7 +127,7 @@ function SingleAlbum() {
             albumInfo && (
 <>
 
-            <Center py={12} bg={'white'} className="single-album-box">
+            <Center py={12} bg={'white'} className="single-album-box" marginBottom={'64px'}>
                 <Box
                     className="single-album-box"
                     role={'group'}
@@ -142,17 +183,16 @@ function SingleAlbum() {
                                 className = 'spotify-icon'
                                 />
                         </NavLink>    
-                        <Text marginTop={4}> 
+                        <div className="track-list"> 
                         Tracks: <br/>
-                        
                         <ol className="singleAlbum-list">
                         {albumInfo.tracks.items.map(track => {
                             return (
-                                <li className="singleAlbum-item" key={albumInfo.id}> {track.name} </li>
+                                <li className="singleAlbum-item" key={track.id}> {track.name} </li>
                             )
                         })}
                         </ol>
-                        </Text>
+                        </div>
                         </Stack>
                     </div>  
                     <div> 
@@ -174,21 +214,31 @@ function SingleAlbum() {
                             {[...Array(5)].map((star, index )=> {
                                 const currentRating = index + 1;
                                 return (
-                                    <label key={star}>
+                                    <div key={index}>
+                                    <label>
                                         <input 
                                         type="radio" 
                                         name="rating"
                                         value={currentRating} 
-                                        onClick={() => setRating(currentRating)}    
+                                        onClick={() => {
+                                            addRating(currentRating)
+                                            }}
+
+                        //                 onClick ={ () => {
+                        //                 addToMyAlbums()
+                        //                 setButton("✔️ My Albums")
+                            
+                        //                  }}
                                         />
                                         <FaStar 
                                             className="star" 
                                             size={20} 
-                                            color={currentRating <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
+                                            color={currentRating <= (hover || rating && rating.ratingValue) ? "#ffc107" : "#e4e5e9"}
                                             onMouseEnter={() => setHover(currentRating)}
                                             onMouseLeave={() => setHover(null)}
-                                            />
+                                            />   
                                     </label>
+                                    </div>
                                 );
                             })}   
                         </div>
@@ -236,7 +286,9 @@ function SingleAlbum() {
             )
         }
         </div>
+        
     )
+    
 
 }
 

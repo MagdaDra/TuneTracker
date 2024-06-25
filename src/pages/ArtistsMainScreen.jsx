@@ -1,4 +1,4 @@
-import { useState, useContext} from 'react';
+import { useState, useContext, useEffect} from 'react';
 import { SpotifyAuthContext } from '../context/Authentication.context';
 import { NavLink } from 'react-router-dom';
 import {
@@ -59,6 +59,12 @@ function ArtistsMainScreen({handleSearching, hi}) {
         })
         console.log(albums)
     }
+
+    useEffect(() => {
+        return () => {
+            handleSearching(false)
+        }
+    },[])
 
     
 

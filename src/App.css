@@ -161,3 +161,7 @@ input[type=radio]{
 .star {
    cursor: pointer;
 }
+
+.track-list {
+    margin-top: 20px;
+}
