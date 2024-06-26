@@ -1,8 +1,7 @@
-import { useParams } from "react-router-dom";
 import { useState, useContext, useEffect} from 'react';
 import { SpotifyAuthContext } from "../context/Authentication.context";
 import axios from "axios";
-import { useNavigate, NavLink, Link } from "react-router-dom";
+import { useNavigate, NavLink, useParams } from "react-router-dom";
 import {
     Box,
     Center,
@@ -127,7 +126,7 @@ function SingleAlbum() {
             albumInfo && (
 <>
 
-            <Center py={12} bg={'white'} className="single-album-box" marginBottom={'64px'}>
+            <Center py={12} bg={'white'} className="single-album-box">
                 <Box
                     className="single-album-box"
                     role={'group'}
@@ -249,7 +248,7 @@ function SingleAlbum() {
                         colorScheme={'purple'}
                         backgroundImage={'linear-gradient(to bottom right, rgb(248 155 41), rgb(231 38 123))'}
                         rounded={'full'}
-                        
+                        px={8}
                         _hover={{
                             bg: 'rgb(247,255,0)',
                             color: 'rgb(231 38 123)'
@@ -274,18 +273,6 @@ function SingleAlbum() {
                         onClick={addToWishlist}
                        
                         >+ WishList</Button>
-
-                        <Link to={`/main/review/${albumId}`}>
-                        <Button 
-                        colorScheme={'purple'}
-                        backgroundImage={'linear-gradient(to bottom right, rgb(248 155 41), rgb(231 38 123))'}
-                        rounded={'full'}
-                        px={16}
-                        _hover={{
-                            bg: 'rgb(247,255,0)',
-                            color: 'rgb(231 38 123)'
-                        }}>+ Review</Button>
-                        </Link>
                         </div>
                     </div>     
                 </Box>

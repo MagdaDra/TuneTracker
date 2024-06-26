@@ -91,6 +91,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 64px;
 }
 
 .myAlbums-buttons {
@@ -170,6 +171,21 @@ input[type=radio]{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 160px;
-    margin-bottom: 20px;
+    height: 100px;
+    width: 200px;
+}
+
+.review {
+    background-color: white;
+    height: 300px;
+    width: 790px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+
+}
+
+.author-button {
+    display: flex;
+    width: 38vw;
 }

@@ -12,7 +12,7 @@ import MyAlbums from './pages/MyAlbums';
 import EditMyAlbum from './pages/EditMyAlbum';
 import AddMyAlbum from './pages/AddMyAlbum';
 import NewReleases from './components/NewReleases';
-import AddReview from './pages/Add Review';
+import Review from './components/Review';
 import { useState } from 'react';
 
 
@@ -32,13 +32,10 @@ function App() {
         <Route path='/main/wishlist' element={<Layout> <WishList/> </Layout>} />
         <Route path='/main/wishlist/new' element={<Layout> <AddWishAlbum /> </Layout>} />
         <Route path='main/wishlist/edit/:albumId' element={<Layout> <EditWishAlbum /> </Layout>} />
-        <Route path='/main/album/:albumId' element={<Layout> <SingleAlbum /> </Layout>} />
+        <Route path='/main/album/:albumId' element={<Layout> <SingleAlbum /> <Review /> </Layout>} />
         <Route path='/main/myalbums' element={<Layout> <MyAlbums/> </Layout>} />
         <Route path='main/myalbums/edit/:albumId' element={<Layout> <EditMyAlbum /> </Layout>} />
         <Route path='/main/myalbums/new' element={<Layout> <AddMyAlbum /> </Layout>} />
-        <Route path='/main/review/:albumId' element={<Layout> <AddReview/> </Layout> } />
-        
-
       </Routes> 
     </ChakraProvider>
   )
