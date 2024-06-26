@@ -4,14 +4,11 @@ import {
     FormControl,
     FormLabel,
     Input,
-    Avatar,
     Box,
-    chakra,
-    Container,
-    Flex,
-    Icon,
-    SimpleGrid,
+    Center,
     useColorModeValue,
+    Text,
+    Stack,
   } from '@chakra-ui/react'
 import { useState, useEffect, useContext } from 'react';
 import { SpotifyAuthContext } from '../context/Authentication.context';
@@ -72,16 +69,29 @@ return (
         </Heading>
         <div>
         {albumReviews.map(reviewInfo => (
-            <div key={reviewInfo.id}>
-                <p> {reviewInfo.review} </p>
-                <p> by {reviewInfo.author} </p>
-            </div>
+            <Center py={12} key={reviewInfo.id}>
+            <Box
+                role={'group'}
+                maxW={'500px'}
+                w={'full'}
+                bg={useColorModeValue('white', 'gray.800')}
+                boxShadow={'2xl'}
+                rounded={'lg'}
+                pos={'relative'}
+                zIndex={1}>
+                <Stack  align={'center'}>
+                <Heading fontSize={20} fontFamily={'body'} fontWeight={500}>
+                {reviewInfo.review}
+                </Heading>
+                <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+                by {reviewInfo.author}
+                </Text>
+            
+                </Stack>
+            </Box>
+            </Center>
         ))}
         </div>
-
-
-
-
 
 
 
@@ -91,12 +101,14 @@ return (
 
     <div className="form">
     <div className="form-fields">
+    <div>
       <FormControl onSubmit = {handleSubmit}>
           <FormLabel htmlFor="album-cover" fontWeight={'600'} color="white">
           Review
           </FormLabel>
           <Input placeholder="Your review" type="text" value={review} onChange={handleReview} marginBottom="20px" paddingLeft={'5px'} height={'100px'} width={'40vw'}/>
       </FormControl>
+      </div>
         <div className="author-button">
       <FormControl onSubmit = {handleSubmit}>
           <FormLabel htmlFor="album-title" fontWeight={'600'} color="white">
