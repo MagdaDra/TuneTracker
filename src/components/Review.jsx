@@ -6,9 +6,9 @@ import {
     Input,
     Box,
     Center,
-    useColorModeValue,
     Text,
     Stack,
+    Textarea,
   } from '@chakra-ui/react'
 import { useState, useEffect, useContext } from 'react';
 import { SpotifyAuthContext } from '../context/Authentication.context';
@@ -41,9 +41,10 @@ function Review() {
             const newReview = {
                 review, author, album_id: albumId
             }
-            await axios.post('https://tunetracker-backend-ppzy.onrender.com/reviews', newReview)
-            setReview("")
-            setAuthor("")
+            await axios.post('https://tunetracker-backend-ppzy.onrender.com/reviews', newReview);
+            setReview("");
+            setAuthor("");
+            getReviews();
         } catch (error) {
             console.log('error adding new review', error)
         }
@@ -87,7 +88,7 @@ return (
                 role={'group'}
                 maxW={'500px'}
                 w={'full'}
-                bg={useColorModeValue('white', 'gray.800')}
+                bg="gray.50" _dark={{ bg: "gray.800" }}
                 boxShadow={'2xl'}
                 rounded={'lg'}
                 pos={'relative'}
@@ -134,7 +135,7 @@ return (
           <FormLabel htmlFor="album-cover" fontWeight={'600'} color="white">
           Review
           </FormLabel>
-          <Input placeholder="Your review" type="text" value={review} onChange={handleReview} marginBottom="20px" paddingLeft={'5px'} height={'100px'} width={'40vw'}/>
+          <Textarea placeholder="Your review" value={review} onChange={handleReview} marginBottom="20px" paddingLeft={'5px'} paddingTop={'5px'} height={'100px'} width={'40vw'}/>
       </FormControl>
       </div>
         <div className="author-button">
