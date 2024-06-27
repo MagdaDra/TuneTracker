@@ -37,7 +37,7 @@ function AddWishAlbum() {
            const newRecord = {
                title, artist, img,  user: userInfo.display_name
                } 
-               await axios.post('http://localhost:5005/wishlist', newRecord)
+               await axios.post('https://tunetracker-backend-ppzy.onrender.com/wishlist', newRecord)
                navigate('/main/wishlist')
         } catch (error) {
             console.log('Error creating the album', error)

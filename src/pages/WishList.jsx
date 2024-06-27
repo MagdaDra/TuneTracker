@@ -21,7 +21,7 @@ export default function WishList () {
 
     const getAlbums = async () => {
         try {
-            const response = await axios.get('http://localhost:5005/wishlist');
+            const response = await axios.get('https://tunetracker-backend-ppzy.onrender.com/wishlist');
             setAlbums(response.data);
         console.log(albums);
         } catch (error) {
@@ -37,7 +37,7 @@ export default function WishList () {
 
     const deleteProject = async (id) => {
         try {
-           await axios.delete(`http://localhost:5005/wishlist/${id}?_embed=tasks`);
+           await axios.delete(`https://tunetracker-backend-ppzy.onrender.com/wishlist/${id}?_embed=tasks`);
            getAlbums();
         } catch (error) {
             console.log('Error deleting the project', error)

@@ -54,7 +54,7 @@ function SingleAlbum() {
       try {
       const newRecord = {
           title: albumInfo.name, artist: albumInfo.artists[0].name, img: albumInfo.images[1].url, spotify_id: albumId, user: userInfo.display_name} 
-          await axios.post('http://localhost:5005/wishlist', newRecord)
+          await axios.post('https://tunetracker-backend-ppzy.onrender.com/wishlist', newRecord)
          navigate('/main/wishlist')
      } catch (error) {
          console.log('Error adding the album to wishlist', error)
@@ -64,7 +64,7 @@ function SingleAlbum() {
       try {
       const newRecord = {
           title: albumInfo.name, artist: albumInfo.artists[0].name, img: albumInfo.images[1].url, spotify_id: albumId, user: userInfo.display_name} 
-          await axios.post('http://localhost:5005/albums', newRecord)
+          await axios.post('https://tunetracker-backend-ppzy.onrender.com/albums', newRecord)
          navigate('/main/myalbums')
      } catch (error) {
          console.log('Error adding the album to my albums', error)
@@ -73,7 +73,7 @@ function SingleAlbum() {
 
     const getRating = async() => {
         try {
-            const response = await axios.get(`http://localhost:5005/ratings`)
+            const response = await axios.get(`https://tunetracker-backend-ppzy.onrender.com/ratings`)
 
             const myRating = response.data.find(albumRating => albumRating.spotify_id === albumId)
             setRating(myRating)
@@ -92,13 +92,13 @@ function SingleAlbum() {
                     ratingValue,
                     user: userInfo.display_name, spotify_id: albumId
                 }
-                await axios.put(`http://localhost:5005/ratings/${rating.id}`, updatedRating)
+                await axios.put(`https://tunetracker-backend-ppzy.onrender.com/ratings/${rating.id}`, updatedRating)
     
             } else {
     
                 const newRating = {
                     ratingValue,  user: userInfo.display_name, spotify_id: albumId}
-                    await axios.post('http://localhost:5005/ratings', newRating)
+                    await axios.post('https://tunetracker-backend-ppzy.onrender.com/ratings', newRating)
             }
 
             getRating()
