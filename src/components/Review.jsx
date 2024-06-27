@@ -22,6 +22,9 @@ function Review() {
     const {albumId} = useParams();
     const value = useContext(SpotifyAuthContext)
     const accessToken = value.token;
+    const userInfo = value.user;
+
+    console.log(userInfo)
 
     const handleReview = (event) => {
         setReview(event.target.value)
@@ -57,6 +60,15 @@ function Review() {
         }
     }
 
+    const deleteReview = async (id) => {
+        try {
+           await axios.delete(`http://localhost:5005/reviews/${id}?_embed=tasks`);
+           getReviews();
+        } catch (error) {
+            console.log('Error deleting my album', error)
+        }
+    }
+
     useEffect(() => {
         getReviews()
     },[accessToken])
@@ -69,6 +81,7 @@ return (
         </Heading>
         <div>
         {albumReviews.map(reviewInfo => (
+            
             <Center py={12} key={reviewInfo.id}>
             <Box
                 role={'group'}
@@ -78,18 +91,33 @@ return (
                 boxShadow={'2xl'}
                 rounded={'lg'}
                 pos={'relative'}
-                zIndex={1}>
-                <Stack  align={'center'}>
+                >
+                <Stack  align={'center'} paddingTop={3} paddingBottom={2}>
                 <Heading fontSize={20} fontFamily={'body'} fontWeight={500}>
                 {reviewInfo.review}
                 </Heading>
-                <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+                <Text color={'gray.500'} fontSize={'sm'}>
                 by {reviewInfo.author}
                 </Text>
             
                 </Stack>
             </Box>
+                <Button
+                    colorScheme={'purple'}
+                    marginBottom={'20px'}
+                    backgroundImage={'linear-gradient(to bottom right, rgb(248 155 41), rgb(231 38 123))'}
+                    rounded={'full'}
+                    px={6}
+                    _hover={{
+                    bg: 'rgb(247,255,0)',
+                    color: 'rgb(231 38 123)',
+                    }}
+                    onClick={() => deleteReview(reviewInfo.id)}
+                    marginLeft={7}>
+                    Delete
+                </Button>
             </Center>
+            
         ))}
         </div>
 
