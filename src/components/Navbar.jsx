@@ -16,7 +16,7 @@ import {
 import { HamburgerIcon, CloseIcon} from '@chakra-ui/icons';
 import { useContext} from 'react';
 import { SpotifyAuthContext } from '../context/Authentication.context';
-
+import music from '../assets/music.png'
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -41,7 +41,7 @@ export default function Navbar() {
           <HStack spacing={8} alignItems={'center'}>
           <NavLink to='/main'>
             <Box maxW={5}>
-                <img src="/src/assets/music.png" />
+                <img src={music} />
             </Box>
           </NavLink> 
             <HStack

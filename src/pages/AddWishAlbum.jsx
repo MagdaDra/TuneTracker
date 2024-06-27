@@ -35,7 +35,7 @@ function AddWishAlbum() {
     
         try {
            const newRecord = {
-               title, artist, img,  user: userInfo.display_name
+               title, artist, img,  user: userInfo.display_name, manual: true
                } 
                await axios.post('https://tunetracker-backend-ppzy.onrender.com/wishlist', newRecord)
                navigate('/main/wishlist')

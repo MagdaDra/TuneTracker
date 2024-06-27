@@ -16,14 +16,20 @@ import {
 export default function WishList () {
 
     const [albums, setAlbums] = useState([]);
+    const [manualAlbums, setManualAlbums] = useState([])
     const value = useContext(SpotifyAuthContext)
     const userInfo = value.user;
 
     const getAlbums = async () => {
         try {
             const response = await axios.get('https://tunetracker-backend-ppzy.onrender.com/wishlist');
+            console.log('Wishlist albums: ', response);
             setAlbums(response.data);
-        console.log(albums);
+            
+            const manuallyAdded = response.data.find(album => album.manual === true);
+            console.log('Manually added albums: ',manuallyAdded)
+            setManualAlbums(manuallyAdded);
+
         } catch (error) {
             console.log('error fetching wishlist', error)
         }
@@ -70,7 +76,7 @@ export default function WishList () {
                     .filter(album => userInfo && album.user === userInfo.display_name)
                     .map(album => (
                     <div key={album.id}>
-                        <NavLink></NavLink>
+                        
                         <Center py={12} className="center-box" marginTop={'10'}>
                         <Box
                             role={'group'}
