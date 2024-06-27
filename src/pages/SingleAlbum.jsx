@@ -12,6 +12,7 @@ import {
     Button,
   } from '@chakra-ui/react'
 import { FaStar } from "react-icons/fa";
+import spotifyIcon from '../assets/spotify.png'
 
 
 function SingleAlbum() {
@@ -178,7 +179,7 @@ function SingleAlbum() {
                             </Text>
                         <NavLink to={albumInfo.external_urls.spotify}> 
                             <Image
-                                src='/src/assets/spotify.png'
+                                src={spotifyIcon}
                                 className = 'spotify-icon'
                                 />
                         </NavLink>    
@@ -223,11 +224,6 @@ function SingleAlbum() {
                                             addRating(currentRating)
                                             }}
 
-                        //                 onClick ={ () => {
-                        //                 addToMyAlbums()
-                        //                 setButton("✔️ My Albums")
-                            
-                        //                  }}
                                         />
                                         <FaStar 
                                             className="star" 
