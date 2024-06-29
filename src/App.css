@@ -191,3 +191,13 @@ input[type=radio]{
     display: flex;
     width: 38vw;
 }
+
+.music-icon {
+    width: 70px;
+    margin-right: 20px;
+}
+
+.home-title {
+    display: flex;
+    justify-content: center;
+}
