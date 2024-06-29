@@ -23,7 +23,7 @@ export default function MyAlbums () {
 
     const getAlbums = async () => {
         try {
-            const response = await axios.get('http://localhost:5005/albums');
+            const response = await axios.get('tune-tracker-backend.vercel.app/albums');
             setAlbums(response.data);
         console.log('My albums:',albums);
         } catch (error) {
@@ -39,7 +39,7 @@ export default function MyAlbums () {
 
     const deleteProject = async (id) => {
         try {
-           await axios.delete(`http://localhost:5005/albums/${id}?_embed=tasks`);
+           await axios.delete(`tune-tracker-backend.vercel.app/albums/${id}?_embed=tasks`);
            getAlbums();
         } catch (error) {
             console.log('Error deleting my album', error)

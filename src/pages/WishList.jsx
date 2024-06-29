@@ -21,7 +21,7 @@ export default function WishList () {
 
     const getAlbums = async () => {
         try {
-            const response = await axios.get('http://localhost:5005/wishlist');
+            const response = await axios.get('tune-tracker-backend.vercel.app/wishlist');
             console.log('Wishlist albums: ', response);
             setAlbums(response.data);
 
@@ -39,7 +39,7 @@ export default function WishList () {
 
     const deleteProject = async (id) => {
         try {
-            await axios.delete(`http://localhost:5005/wishlist/${id}?_embed=tasks`);
+            await axios.delete(`tune-tracker-backend.vercel.app/wishlist/${id}?_embed=tasks`);
             getAlbums();
             } catch (error) {
                 console.log('Error deleting the project', error)

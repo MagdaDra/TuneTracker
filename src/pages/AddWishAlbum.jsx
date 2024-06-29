@@ -49,7 +49,7 @@ function AddWishAlbum() {
            const newRecord = {
                title: albumData.albums.items[0].name, artist: albumData.albums.items[0].artists[0].name, img: albumData.albums.items[0].images[1].url,  user: userInfo.display_name, manual: true, spotify_id: albumData.albums.items[0].id
                } 
-              await axios.post('http://localhost:5005/wishlist', newRecord)
+              await axios.post('tune-tracker-backend.vercel.app/wishlist', newRecord)
                navigate('/main/wishlist')
         } catch (error) {
             console.log('Error creating the album', error)

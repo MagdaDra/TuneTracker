@@ -14,7 +14,7 @@ import {
 import { Search2Icon } from '@chakra-ui/icons'
 
 
-function ArtistsMainScreen({handleSearching, hi}) {
+function ArtistsMainScreen({handleSearching}) {
 
     const [albumsData, setAlbumsData] = useState([])
     const [search, setSearch] = useState("")
@@ -31,9 +31,6 @@ function ArtistsMainScreen({handleSearching, hi}) {
     const handleSearch = async () => {
 
         handleSearching(true)
-        hi()
-
-        //console.log("Search for " + search)
         
         // Get request using search to get the Artist ID
         const artistParameters = {

@@ -1,8 +1,4 @@
-
 import { NavLink } from 'react-router-dom';
-
-
-
 import {
   Box,
   Heading,
@@ -12,7 +8,7 @@ import {
   Stack,
   
 } from '@chakra-ui/react';
-import music from "../assets/music.png"
+import music from "../assets/music.png";
 
 export default function HomePage() {
   
