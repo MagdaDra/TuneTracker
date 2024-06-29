@@ -37,10 +37,7 @@ export default function HomePage() {
             Track your favourite albums
             </Text>
           </Heading>
-          {/* <Text color={'gray.500'}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia aperiam consectetur saepe facilis, aliquam libero minima! Excepturi earum omnis, voluptates cumque cupiditate doloribus, nisi fugiat dicta ullam quod, laborum totam.
 
-          </Text> */}
           <Stack
             direction={'column'}
             spacing={3}

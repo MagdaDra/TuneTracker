@@ -12,18 +12,19 @@ import MyAlbums from './pages/MyAlbums';
 import EditMyAlbum from './pages/EditMyAlbum';
 import AddMyAlbum from './pages/AddMyAlbum';
 import NewReleases from './components/NewReleases';
-import { useState } from 'react';
+import {  useState } from 'react';
 
 
 function App() {
   const [isSearching, setIsSearching] = useState(false)
 
 
+
   return (
     <ChakraProvider>
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='/main' element={<Layout> <ArtistsMainScreen handleSearching={setIsSearching}/> {!isSearching && <NewReleases />}  </Layout>} />
+        <Route path='/main' element={<Layout> <ArtistsMainScreen isSearching={isSearching} handleSearching={setIsSearching}/> {!isSearching && <NewReleases />}  </Layout>} />
         <Route path='/main/wishlist' element={<Layout> <WishList/> </Layout>} />
         <Route path='/main/wishlist/new' element={<Layout> <AddWishAlbum /> </Layout>} />
         <Route path='main/wishlist/edit/:albumId' element={<Layout> <EditWishAlbum /> </Layout>} />

@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect} from 'react';
 import { SpotifyAuthContext } from '../context/Authentication.context';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import {
     Box,
     Center,
@@ -14,7 +14,7 @@ import {
 import { Search2Icon } from '@chakra-ui/icons'
 
 
-function ArtistsMainScreen({handleSearching}) {
+function ArtistsMainScreen({handleSearching,isSearching}) {
 
     const [albumsData, setAlbumsData] = useState([])
     const [search, setSearch] = useState("")
@@ -22,6 +22,7 @@ function ArtistsMainScreen({handleSearching}) {
     const value = useContext(SpotifyAuthContext)
     const accessToken = value.token
     console.log("Access token:", accessToken)
+    const navigate = useNavigate()
 
 
     // Search
@@ -29,6 +30,10 @@ function ArtistsMainScreen({handleSearching}) {
     // Display the albums to the user
     
     const handleSearch = async () => {
+
+        if(isSearching && search==="") {
+            navigate(0)
+        }
 
         handleSearching(true)
         
