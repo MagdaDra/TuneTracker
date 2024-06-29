@@ -56,7 +56,7 @@ function SingleAlbum() {
       try {
       const newRecord = {
           title: albumInfo.name, artist: albumInfo.artists[0].name, img: albumInfo.images[1].url, spotify_id: albumId, user: userInfo.display_name} 
-          await axios.post('tune-tracker-backend.vercel.app/wishlist', newRecord)
+          await axios.post('https://tune-tracker-backend.vercel.app/wishlist', newRecord)
          navigate('/main/wishlist')
      } catch (error) {
          console.log('Error adding the album to wishlist', error)
@@ -66,7 +66,7 @@ function SingleAlbum() {
       try {
       const newRecord = {
           title: albumInfo.name, artist: albumInfo.artists[0].name, img: albumInfo.images[1].url, spotify_id: albumId, user: userInfo.display_name} 
-          await axios.post('tune-tracker-backend.vercel.app/albums', newRecord)
+          await axios.post('https://tune-tracker-backend.vercel.app/albums', newRecord)
          navigate('/main/myalbums')
      } catch (error) {
          console.log('Error adding the album to my albums', error)
@@ -75,7 +75,7 @@ function SingleAlbum() {
 
     const getRating = async() => {
         try {
-            const response = await axios.get(`tune-tracker-backend.vercel.app/ratings`)
+            const response = await axios.get(`https://tune-tracker-backend.vercel.app/ratings`)
 
             const myRating = response.data.find(albumRating => albumRating.spotify_id === albumId)
             setRating(myRating)
@@ -94,13 +94,13 @@ function SingleAlbum() {
                     ratingValue,
                     user: userInfo.display_name, spotify_id: albumId
                 }
-                await axios.put(`tune-tracker-backend.vercel.app/ratings/${rating.id}`, updatedRating)
+                await axios.put(`https://tune-tracker-backend.vercel.app/ratings/${rating.id}`, updatedRating)
     
             } else {
     
                 const newRating = {
                     ratingValue,  user: userInfo.display_name, spotify_id: albumId}
-                    await axios.post('tune-tracker-backend.vercel.app/ratings', newRating)
+                    await axios.post('https://tune-tracker-backend.vercel.app/ratings', newRating)
             }
 
             getRating()

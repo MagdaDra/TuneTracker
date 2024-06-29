@@ -41,7 +41,7 @@ function Review() {
             const newReview = {
                 review, author, album_id: albumId
             }
-            await axios.post('tune-tracker-backend.vercel.app/reviews', newReview);
+            await axios.post('https://tune-tracker-backend.vercel.app/reviews', newReview);
             setReview("");
             setAuthor("");
             getReviews();
@@ -52,7 +52,7 @@ function Review() {
 
     const getReviews = async () => {
         try {
-            const response = await axios.get('tune-tracker-backend.vercel.app/reviews')
+            const response = await axios.get('https://tune-tracker-backend.vercel.app/reviews')
 
             const albumReviews = response.data.filter(albumReview => albumReview.album_id === albumId)
             setAlbumReviews(albumReviews)
@@ -63,7 +63,7 @@ function Review() {
 
     const deleteReview = async (id) => {
         try {
-           await axios.delete(`tune-tracker-backend.vercel.app/reviews/${id}?_embed=tasks`);
+           await axios.delete(`https://tune-tracker-backend.vercel.app/reviews/${id}?_embed=tasks`);
            getReviews();
         } catch (error) {
             console.log('Error deleting my album', error)
