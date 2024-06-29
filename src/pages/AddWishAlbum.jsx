@@ -14,7 +14,7 @@ function AddWishAlbum() {
     const [title, setTitle] = useState("");
     const [artist, setArtist] = useState("");
     const navigate = useNavigate();
-    const value = useContext(SpotifyAuthContext)
+    const value = useContext(SpotifyAuthContext);
     const userInfo = value.user;
     const accessToken = value.token;
 
