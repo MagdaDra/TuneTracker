@@ -37,7 +37,7 @@ function AddMyAlbum() {
            const newRecord = {
                title, artist, img, user: userInfo.display_name
                } 
-               await axios.post('https://tunetracker-backend-ppzy.onrender.com/albums', newRecord)
+               await axios.post('http://localhost:5005/albums', newRecord)
                navigate('/main/myalbums')
         } catch (error) {
             console.log('Error creating the album', error)

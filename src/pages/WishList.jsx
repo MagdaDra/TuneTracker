@@ -16,39 +16,38 @@ import {
 export default function WishList () {
 
     const [albums, setAlbums] = useState([]);
-    const [manualAlbums, setManualAlbums] = useState([])
     const value = useContext(SpotifyAuthContext)
     const userInfo = value.user;
 
     const getAlbums = async () => {
         try {
-            const response = await axios.get('https://tunetracker-backend-ppzy.onrender.com/wishlist');
+            const response = await axios.get('http://localhost:5005/wishlist');
             console.log('Wishlist albums: ', response);
             setAlbums(response.data);
-            
-            const manuallyAdded = response.data.find(album => album.manual === true);
-            console.log('Manually added albums: ',manuallyAdded)
-            setManualAlbums(manuallyAdded);
 
         } catch (error) {
             console.log('error fetching wishlist', error)
         }
     }
 
-
     useEffect(() => {
         console.log('useEffect: Mounting wishlist')
         getAlbums();
     }, []);
+                
+                
 
     const deleteProject = async (id) => {
         try {
-           await axios.delete(`https://tunetracker-backend-ppzy.onrender.com/wishlist/${id}?_embed=tasks`);
-           getAlbums();
-        } catch (error) {
-            console.log('Error deleting the project', error)
+            await axios.delete(`http://localhost:5005/wishlist/${id}?_embed=tasks`);
+            getAlbums();
+            } catch (error) {
+                console.log('Error deleting the project', error)
+                }
         }
-    }
+
+
+
     
     return (
         <div className="margin-bottom">

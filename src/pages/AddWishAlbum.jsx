@@ -13,10 +13,10 @@ import {
 function AddWishAlbum() {
     const [title, setTitle] = useState("");
     const [artist, setArtist] = useState("");
-    const [img, setImg] = useState("");
     const navigate = useNavigate();
     const value = useContext(SpotifyAuthContext)
     const userInfo = value.user;
+    const accessToken = value.token;
 
     const handleTitle = (event) => {
         setTitle(event.target.value)
@@ -26,18 +26,30 @@ function AddWishAlbum() {
         setArtist(event.target.value)
     }
 
-    const handleImg = (event) => {
-        setImg(event.target.value)
-    }
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-    
+
+        const searchParameters = {
+          method: 'GET',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + accessToken
+          }
+      };
+
+
+      const albumResponse = await fetch(`https://api.spotify.com/v1/search?q=${title}+${artist}&type=album%2Cartist`, searchParameters);
+      const albumData = await albumResponse.json();
+
+      console.log('album data is ', albumData.albums);
+
+
         try {
            const newRecord = {
-               title, artist, img,  user: userInfo.display_name, manual: true
+               title: albumData.albums.items[0].name, artist: albumData.albums.items[0].artists[0].name, img: albumData.albums.items[0].images[1].url,  user: userInfo.display_name, manual: true, spotify_id: albumData.albums.items[0].id
                } 
-               await axios.post('https://tunetracker-backend-ppzy.onrender.com/wishlist', newRecord)
+              await axios.post('http://localhost:5005/wishlist', newRecord)
                navigate('/main/wishlist')
         } catch (error) {
             console.log('Error creating the album', error)
@@ -52,12 +64,6 @@ function AddWishAlbum() {
           </Heading>
           
           <div className="form-fields">
-            <FormControl onSubmit = {handleSubmit}>
-                <FormLabel htmlFor="album-cover" fontWeight={'600'} color="white">
-                Album cover
-                </FormLabel>
-                <Input id="album-cover" placeholder="Add cover" type="text" name="img" value={img} onChange={handleImg} paddingLeft={'5px'} marginBottom="20px"/>
-            </FormControl>
 
             <FormControl onSubmit = {handleSubmit}>
                 <FormLabel htmlFor="album-title" fontWeight={'600'} color="white">

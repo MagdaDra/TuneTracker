@@ -39,7 +39,7 @@ const EditWishAlbum = () => {
           const album = {
             title, artist, img, user: userInfo.display_name
           } 
-          await axios.put(`https://tunetracker-backend-ppzy.onrender.com/wishlist/${albumId}?_embed=tasks`, album);
+          await axios.put(`http://localhost:5005/wishlist/${albumId}?_embed=tasks`, album);
           navigate(`/main/wishlist`)
 
         } catch (error) {
@@ -49,7 +49,7 @@ const EditWishAlbum = () => {
 
     const getSingleAlbum = async (id) => {
         try {
-            const response = await axios.get(`https://tunetracker-backend-ppzy.onrender.com/wishlist/${id}?_embed=tasks`);
+            const response = await axios.get(`http://localhost:5005/wishlist/${id}?_embed=tasks`);
             setImg(response.data.img);
             setTitle(response.data.title);
             setArtist(response.data.artist);

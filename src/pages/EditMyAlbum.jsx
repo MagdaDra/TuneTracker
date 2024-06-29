@@ -39,7 +39,7 @@ const EditMyAlbum = () => {
           const album = {
             title, artist, img, user: userInfo.display_name
           } 
-          await axios.put(`https://tunetracker-backend-ppzy.onrender.com/albums/${albumId}?_embed=tasks`, album);
+          await axios.put(`http://localhost:5005/albums/${albumId}?_embed=tasks`, album);
           navigate(`/main/myalbums`)
 
         } catch (error) {
@@ -49,7 +49,7 @@ const EditMyAlbum = () => {
 
     const getSingleAlbum = async (id) => {
         try {
-            const response = await axios.get(`https://tunetracker-backend-ppzy.onrender.com/albums/${id}?_embed=tasks`);
+            const response = await axios.get(`http://localhost:5005/albums/${id}?_embed=tasks`);
             setImg(response.data.img);
             setTitle(response.data.title);
             setArtist(response.data.artist);

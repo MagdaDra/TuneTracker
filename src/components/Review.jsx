@@ -41,7 +41,7 @@ function Review() {
             const newReview = {
                 review, author, album_id: albumId
             }
-            await axios.post('https://tunetracker-backend-ppzy.onrender.com/reviews', newReview);
+            await axios.post('http://localhost:5005/reviews', newReview);
             setReview("");
             setAuthor("");
             getReviews();
@@ -52,7 +52,7 @@ function Review() {
 
     const getReviews = async () => {
         try {
-            const response = await axios.get('https://tunetracker-backend-ppzy.onrender.com/reviews')
+            const response = await axios.get('http://localhost:5005/reviews')
 
             const albumReviews = response.data.filter(albumReview => albumReview.album_id === albumId)
             setAlbumReviews(albumReviews)
@@ -63,7 +63,7 @@ function Review() {
 
     const deleteReview = async (id) => {
         try {
-           await axios.delete(`https://tunetracker-backend-ppzy.onrender.com/reviews/${id}?_embed=tasks`);
+           await axios.delete(`http://localhost:5005/reviews/${id}?_embed=tasks`);
            getReviews();
         } catch (error) {
             console.log('Error deleting my album', error)
