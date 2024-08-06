@@ -6,7 +6,8 @@ It is integrated with a mock backend (JSON server) and the Spotify API. The app 
 React.js, Node.js, Spotify API, Chakra UI, CSS
 
 ## Website
-To access the website, please log in using the credentials below:
+To access the website, please log in using the credentials below: </br>
+
 email: tunetracker90@gmail.com
 password: tunetracker90
 
