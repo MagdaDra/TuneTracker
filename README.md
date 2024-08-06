@@ -8,7 +8,7 @@ React.js, Node.js, Spotify API, Chakra UI, CSS
 ## Website
 To access the website, please log in using the credentials below: </br>
 
-email: tunetracker90@gmail.com
-password: tunetracker90
+email: tunetracker90@gmail.com </br>
+password: tunetracker90 </br>
 
 https://tunetracker90.netlify.app
