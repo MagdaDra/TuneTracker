@@ -6,4 +6,8 @@ It is integrated with a mock backend (JSON server) and the Spotify API. The app 
 React.js, Node.js, Spotify API, Chakra UI, CSS
 
 ## Website
+To access the website, please log in using the credentials below:
+email: tunetracker90@gmail.com
+password: tunetracker90
+
 https://tunetracker90.netlify.app
