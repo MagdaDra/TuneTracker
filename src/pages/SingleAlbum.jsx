@@ -109,12 +109,6 @@ function SingleAlbum() {
         }
     }
 
-    
-
-
-
-
-
     useEffect(() => {
         getAlbum();
         getRating();
@@ -139,7 +133,7 @@ function SingleAlbum() {
                     rounded={'lg'}
                     pos={'relative'}
                     zIndex={0}>
-                    <div>
+                    <div className='singleAblum-white-bg'>
                         <Box
                             rounded={'lg'}
                             mt={-12}
