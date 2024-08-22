@@ -136,7 +136,7 @@ return (
           <FormLabel htmlFor="album-cover" fontWeight={'600'} color="white">
           Review
           </FormLabel>
-          <Textarea className='review-field' placeholder="Your review" value={review} onChange={handleReview} marginBottom="20px" paddingLeft={'5px'} paddingTop={'5px'} height={'100px'} width={'70vw'}/>
+          <Textarea className='review-field' placeholder="Your review" value={review} onChange={handleReview} marginBottom="20px" paddingLeft={'5px'} paddingTop={'5px'} width={'60vw'} maxWidth={'800px'}/>
       </FormControl>
       </div>
         <div className="author-button">

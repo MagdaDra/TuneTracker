@@ -139,7 +139,6 @@
 }
 
 .singleAlbum-list {
-    max-height: 400px;
     width: 400px;
     display: flex;
     flex-direction: column;
@@ -189,7 +188,8 @@ input[type=radio]{
 
 .author-button {
     display: flex;
-    
+    width: 60vw;
+    max-width: 800px;
 }
 
 .music-icon {
@@ -219,13 +219,11 @@ input[type=radio]{
         margin-left: 4vw;
     }
 
-    .review-field {
-        width: 20vw;
-    }
 
     .form-fields {
         width: 70vw;
     }
+
 
     .singleAlbum-list {
         display: flex;

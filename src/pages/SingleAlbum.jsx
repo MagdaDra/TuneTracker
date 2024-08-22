@@ -138,7 +138,7 @@ function SingleAlbum() {
                             rounded={'lg'}
                             mt={-12}
                             pos={'relative'}
-                            height={'230px'}
+                            
                             _after={{
                                 transition: 'all .3s ease',
                                 content: '""',
@@ -165,7 +165,7 @@ function SingleAlbum() {
                             />
                         </Box>
 
-                        <Stack pt={10} height={'600px'} align={'left'}>
+                        <Stack pt={10}  align={'left'}>
                             <Heading fontSize={'xl'} fontFamily={'body'} fontWeight={800} maxW={350}>
                                 {albumInfo.name}
                             </Heading>
