@@ -84,7 +84,7 @@ return (
         {albumReviews.map(reviewInfo => (
             
             <Center py={12} key={reviewInfo.id}>
-            <Box
+            <Box className='review-box'
                 role={'group'}
                 maxW={'500px'}
                 w={'full'}
@@ -109,6 +109,7 @@ return (
                     backgroundImage={'linear-gradient(to bottom right, rgb(248 155 41), rgb(231 38 123))'}
                     rounded={'full'}
                     px={6}
+                    marginRight={'2vw'}
                     _hover={{
                     bg: 'rgb(247,255,0)',
                     color: 'rgb(231 38 123)',
@@ -135,32 +136,34 @@ return (
           <FormLabel htmlFor="album-cover" fontWeight={'600'} color="white">
           Review
           </FormLabel>
-          <Textarea placeholder="Your review" value={review} onChange={handleReview} marginBottom="20px" paddingLeft={'5px'} paddingTop={'5px'} height={'100px'} width={'40vw'}/>
+          <Textarea className='review-field' placeholder="Your review" value={review} onChange={handleReview} marginBottom="20px" paddingLeft={'5px'} paddingTop={'5px'} width={'60vw'} maxWidth={'800px'}/>
       </FormControl>
       </div>
         <div className="author-button">
-      <FormControl onSubmit = {handleSubmit}>
-          <FormLabel htmlFor="album-title" fontWeight={'600'} color="white">
-          By
-          </FormLabel>
-          <Input placeholder="Your name" type="text" value={author} onChange={handleAuthor} marginBottom="20px" paddingLeft={'5px'} width={'20vw'}/>
-      </FormControl>
-
-        <div className="add-album-button">
-        <Button 
-        type="submit"
-        color={'white'}
-        backgroundImage={'linear-gradient(to bottom right, rgb(248 155 41), rgb(231 38 123))'}
-        rounded={'full'}
-        px={8}
-        _hover={{
-            bg: 'rgb(247,255,0)',
-            color: 'rgb(231 38 123)'
-        }}
-        onClick={handleSubmit}
-        >Add Review
-        </Button>
-        </div>
+            <div>
+                <FormControl onSubmit = {handleSubmit}>
+                    <FormLabel htmlFor="album-title" fontWeight={'600'} color="white">
+                    By
+                    </FormLabel>
+                    <Input placeholder="Your name" type="text" value={author} onChange={handleAuthor} paddingLeft={'5px'}/>
+                </FormControl>
+            </div>
+            <div className="add-album-button">
+                <Button 
+                type="submit"
+                color={'white'}
+                backgroundImage={'linear-gradient(to bottom right, rgb(248 155 41), rgb(231 38 123))'}
+                rounded={'full'}
+                marginLeft={'7'}
+                px={6}
+                _hover={{
+                    bg: 'rgb(247,255,0)',
+                    color: 'rgb(231 38 123)'
+                }}
+                onClick={handleSubmit}
+                >Add Review
+                </Button>
+            </div>
         </div>
     </div>
 

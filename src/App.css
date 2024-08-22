@@ -139,7 +139,6 @@
 }
 
 .singleAlbum-list {
-    max-height: 400px;
     width: 400px;
     display: flex;
     flex-direction: column;
@@ -189,7 +188,8 @@ input[type=radio]{
 
 .author-button {
     display: flex;
-    width: 38vw;
+    width: 60vw;
+    max-width: 800px;
 }
 
 .music-icon {
@@ -201,4 +201,37 @@ input[type=radio]{
 .home-title {
     display: flex;
     justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+    .single-album-box {
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .text-styling {
+        font-size: 5vw;
+    }
+
+    .review-box {
+        margin-left: 4vw;
+    }
+
+
+    .form-fields {
+        width: 70vw;
+    }
+
+
+    .singleAlbum-list {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+
+    .singleAblum-white-bg {
+        height: 100%;
+    }
 }
