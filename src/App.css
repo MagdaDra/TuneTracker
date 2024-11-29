@@ -211,6 +211,30 @@ input[type=radio]{
         justify-content: space-around;
     }
 
+    h1 {
+        font-size: 36px;
+    }
+
+    .myAlbums {
+        font-size: 24px;
+        margin-left: 20px;
+    }
+
+    .myAlbumsButton {
+        margin-right: 20px;
+    }
+
+    .search-bar {
+        margin-left: 1rem;
+    }
+    
+    
+    .search-input {
+        width: 70vw;
+        height: 5vh;
+    }
+
+
 
     .review-box {
         margin-left: 4vw;
