@@ -66,7 +66,7 @@ function Review() {
            await axios.delete(`https://tune-tracker-backend.vercel.app/reviews/${id}?_embed=tasks`);
            getReviews();
         } catch (error) {
-            console.log('Error deleting my album', error)
+            console.log('Error deleting my review', error)
         }
     }
 

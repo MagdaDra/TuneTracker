@@ -147,7 +147,7 @@
 }
 
 .text-styling {
-    font-size: 2.5vh;
+    font-size: 16px;
     font-weight: 800;
 }
 
@@ -211,9 +211,30 @@ input[type=radio]{
         justify-content: space-around;
     }
 
-    .text-styling {
-        font-size: 5vw;
+    h1 {
+        font-size: 36px;
     }
+
+    .myAlbums {
+        font-size: 24px;
+        margin-left: 20px;
+    }
+
+    .myAlbumsButton {
+        margin-right: 20px;
+    }
+
+    .search-bar {
+        margin-left: 1rem;
+    }
+    
+    
+    .search-input {
+        width: 70vw;
+        height: 5vh;
+    }
+
+
 
     .review-box {
         margin-left: 4vw;

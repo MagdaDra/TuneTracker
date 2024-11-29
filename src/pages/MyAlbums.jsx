@@ -53,6 +53,7 @@ export default function MyAlbums () {
             
             <Link to='/main/myalbums/new'>
                 <Button 
+                className='myAlbumsButton'
                 colorScheme={'purple'}
                 backgroundImage={'linear-gradient(to bottom right, rgb(248 155 41), rgb(231 38 123))'}
                 rounded={'full'}
